@@ -1,6 +1,6 @@
 object MainForm: TMainForm
-  Left = 193
-  Top = 230
+  Left = 191
+  Top = 239
   Width = 912
   Height = 478
   Caption = 'MainForm'
@@ -12,7 +12,6 @@ object MainForm: TMainForm
   Font.Style = []
   Menu = MainMenu1
   OldCreateOrder = False
-  Visible = True
   OnClose = FormClose
   OnCreate = FormCreate
   OnResize = FormResize
@@ -79,6 +78,15 @@ object MainForm: TMainForm
     Caption = 'Button1'
     TabOrder = 1
     OnClick = Button1Click
+  end
+  object Button2: TButton
+    Left = 744
+    Top = 200
+    Width = 75
+    Height = 25
+    Caption = 'Button2'
+    TabOrder = 5
+    OnClick = Button2Click
   end
   object MainMenu1: TMainMenu
     Left = 736

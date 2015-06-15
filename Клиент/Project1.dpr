@@ -9,12 +9,14 @@ uses
   Unit5 in 'Unit5.pas' {viewForm},
   Unit6 in 'Unit6.pas' {counterAddForm},
   Unit7 in 'Unit7.pas' {filterForm},
-  Unit8 in 'Unit8.pas' {listForm};
+  Unit8 in 'Unit8.pas' {listForm},
+  Unit9 in 'Unit9.pas' {loginForm};
 
 {$R *.res}
 
 begin
   Application.Initialize;
+  Application.CreateForm(TloginForm, loginForm);
   Application.CreateForm(TMainForm, MainForm);
   Application.CreateForm(TcardForm, cardForm);
   Application.CreateForm(TdriversForm, driversForm);

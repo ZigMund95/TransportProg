@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, DBCtrls, ScktComp, ExtCtrls, Grids, Menus, ComCtrls,
-  ImgList;
+  ImgList, ShellApi;
 
 type
   TMainForm = class(TForm)
@@ -40,6 +40,7 @@ type
     Button6: TButton;
     Client2: TClientSocket;
     Client3: TClientSocket;
+    Button2: TButton;
     procedure FormCreate(Sender: TObject);
     procedure FormResize(Sender: TObject);
     procedure N1Click(Sender: TObject);
@@ -66,6 +67,7 @@ type
     procedure Client1Error(Sender: TObject; Socket: TCustomWinSocket;
       ErrorEvent: TErrorEvent; var ErrorCode: Integer);
     procedure Client1Connect(Sender: TObject; Socket: TCustomWinSocket);
+    procedure Button2Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -93,7 +95,7 @@ procedure FilterGrid();
 
 implementation
 
-uses Unit2, Unit3, Unit5, Unit4, Unit6, Unit7, Unit8;
+uses Unit2, Unit3, Unit5, Unit4, Unit6, Unit7, Unit8, Unit9;
 
 {$R *.dfm}
 procedure ColumnWidthAlign(Sender: TObject);
@@ -219,6 +221,7 @@ var i:integer;
     IP: TStrings;
     s: string;
 begin
+
 IP := TStringList.Create;
 IP.LoadFromFile('ip.inf');
 edit1.Text := IP[0];
@@ -703,6 +706,7 @@ begin
 Client1.Active := false;
 Client2.Active := false;
 Client3.Active := false;
+loginForm.Close;
 end;
 
 //¬ход€щие сообщени€ от базы водителей
@@ -815,6 +819,29 @@ Client3.Active := false;
 Client3.Host := edit1.Text;
 Client3.Active := true;
 Button6.Caption := 'Reconnect';
+end;
+
+procedure TMainForm.Button2Click(Sender: TObject);
+var HTMLPage: TStrings;
+begin
+HTMLPage := TStringList.Create;
+HTMLPage.Add('<html>');
+HTMLPage.Add('<head>');
+HTMLPage.Add('<title>');
+HTMLPage.Add('New Page');
+HTMLPage.Add('</title>');
+HTMLPage.Add('</head>');
+
+HTMLPage.Add('<body>');
+HTMLPage.Add('<table>');
+
+HTMLPage.Add('/table');
+HTMLPage.Add('</body>');
+HTMLPage.Add('</html>');
+
+HTMLPage.SaveToFile('page.html');
+HTMLPage.Free;
+//ShellExecute(handle, 'open', 'page.html', nil, nil, SW_SHOWNORMAL);
 end;
 
 end.
