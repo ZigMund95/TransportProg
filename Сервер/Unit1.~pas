@@ -96,7 +96,7 @@ begin
   while not Table1.Eof do
     begin
       OutputM := '#reisi';
-      for i := 0 to 49 do
+      for i := 0 to 50 do
         OutputM := OutputM + Table1.Fields[i].asstring + ';';
       Socket.SendText(OutputM);
       Table1.Next;
@@ -107,14 +107,14 @@ begin
   Socket.SendText(InputM);
   delete(InputM,1,4);
   memo1.Clear;
-  for i := 0 to 49 do
+  for i := 0 to 50 do
     begin
       memo1.Lines.Add(copy(InputM,1,pos(';',InputM)-1));
       delete(InputM,1,pos(';',InputM));
     end;
   table1.InsertRecord([]);
   table1.Edit;
-  for i := 0 to 49 do
+  for i := 0 to 50 do
     table1.Fields[i].AsString := memo1.Lines[i];
   table1.Post;
 end;
@@ -123,7 +123,7 @@ begin
   Socket.SendText(InputM);
   delete(InputM,1,8);
   memo1.Clear;
-  for i := 0 to 35 do
+  for i := 0 to 50 do
     begin
       memo1.Lines.Add(copy(InputM,1,pos(';',InputM)-1));
       delete(InputM,1,pos(';',InputM));
@@ -135,8 +135,8 @@ begin
       table1.Next;
       inc(i);
     end;
-  table1.Edit;  
-  for i := 0 to 35 do
+  table1.Edit;
+  for i := 0 to 50 do
     table1.Fields[i].AsString := memo1.Lines[i];
   table1.Post;
 end;

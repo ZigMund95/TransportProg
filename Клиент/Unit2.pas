@@ -117,7 +117,6 @@ type
     Label33: TLabel;
     Label36: TLabel;
     Edit7: TEdit;
-    Panel1: TPanel;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormMouseWheelDown(Sender: TObject; Shift: TShiftState;
       MousePos: TPoint; var Handled: Boolean);
@@ -142,7 +141,6 @@ type
     procedure BlockKey(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure BlockPress(Sender: TObject; var Key: Char);
     procedure MemoChange(Sender: TObject);
-    procedure FormResize(Sender: TObject);
   private
     { Private declarations }
   public
@@ -176,8 +174,6 @@ begin cardForm.VertScrollBar.Position := cardForm.VertScrollBar.Position - 10; e
 procedure TcardForm.FormCreate(Sender: TObject);
 var i: integer;
 begin
-Panel1.Top := 20;
-Panel1.Left := 8;
 for i := 1 to 51 do Unit2.EnabledField[i] := true;
 Unit2.EnabledField[2] := false;
 Unit2.EnabledField[18] := false; Unit2.EnabledField[19] := false;
@@ -534,13 +530,6 @@ with Sender as TMemo do
         s := s + Lines[i] + ' ';
     Unit1.CardInf[Tag] := s;
   end;
-end;
-
-
-procedure TcardForm.FormResize(Sender: TObject);
-begin
-Panel1.Width := cardForm.ClientWidth - 16;
-Panel1.Height := cardForm.ClientHeight - 16;
 end;
 
 end.

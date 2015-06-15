@@ -85,11 +85,22 @@ var InputM, OutputM,s: string;
     InputN,i: integer;
 begin
 InputM := Socket.ReceiveText;
+if copy(InputM,1,6) = '#login' then InputN := 0;
 if InputM = 'admin' then InputN := 1;
 if copy(InputM,1,4) = '#new' then InputN := 4;
 if copy(InputM,1,8) = '#rewrite' then InputN := 7;
 edit1.Text := inttostr(InputN);
 case InputN of
+0:
+begin
+  delete(InputM,1,6);
+  s := copy(InputM,1,pos(';',InputM)-1);
+  delete(InputM,1,pos(';',InputM));
+  if s = InputM then
+    Socket.SendText('#loginYes')
+  else
+   Socket.SendText('#loginNo');
+end;
 1:
 begin
   Table1.First;

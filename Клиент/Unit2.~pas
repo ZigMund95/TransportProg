@@ -178,7 +178,7 @@ var i: integer;
 begin
 Panel1.Top := 20;
 Panel1.Left := 8;
-for i := 1 to 50 do Unit2.EnabledField[i] := true;
+for i := 1 to 51 do Unit2.EnabledField[i] := true;
 Unit2.EnabledField[2] := false;
 Unit2.EnabledField[18] := false; Unit2.EnabledField[19] := false;
 cardForm.Left := (screen.Width - cardForm.Width) div 2;
@@ -468,6 +468,7 @@ end;
 procedure TcardForm.FormActivate(Sender: TObject);
 begin
 Unit1.CardInf[2] := datetostr(Date);
+cardForm.EditChange(cardForm.Edit7);
 cardForm.EditChange(cardForm.Edit29); //1
 cardForm.DateChange(cardForm.DateTimePicker14); //2
 cardForm.EditChange(cardForm.Edit30); cardForm.BoxChange(cardForm.ComboBox1); //3 4
@@ -497,7 +498,7 @@ var i: integer;
 begin
 //cardForm.BoxChange(cardForm.ComboBox2);
 memo5.Clear;
-    for i := 1 to 50 do
+    for i := 1 to 51 do
     if (Unit2.EnabledField[i])or(i=2) then
       memo5.Lines.Add(CardInf[i] + ';')
     else

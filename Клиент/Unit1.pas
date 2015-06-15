@@ -27,7 +27,6 @@ type
     N15: TMenuItem;
     Grid: TStringGrid;
     Client1: TClientSocket;
-    Button1: TButton;
     Edit1: TEdit;
     PopupMenu1: TPopupMenu;
     qwe1: TMenuItem;
@@ -116,7 +115,7 @@ for ColNum := 0 to ColCount - 1 do
         if MaxColWidth < ColWidth then
           MaxColWidth := ColWidth;
       end;
-    if {(ColNum < 30)and}(Unit1.FieldVision[ColNum]) then
+    if (ColNum < 30)and(Unit1.FieldVision[ColNum]) then
       ColWidths[ColNum] := MaxColWidth + 5
     else
       ColWidths[ColNum] := -1;
@@ -306,11 +305,30 @@ begin
 InputM := socket.ReceiveText;
 while InputM<>'' do
   begin
+    if copy(InputM,1,6) = '#login' then InputN := 0;
     if copy(InputM,1,6) = '#reisi' then InputN := 1; //получение списка заявок
     if copy(InputM,1,4) = '#new' then InputN := 4; //добавление новой заявки
     if copy(InputM,1,8) = '#rewrite' then InputN := 5; //изменение заявки
 
 case InputN of
+0:
+begin
+  delete(InputM,1,6);
+  if InputM = 'Yes' then
+    begin
+      mainForm.Visible := true;
+      loginForm.Visible := false;
+      listForm.GridD.RowCount := 2;
+      Client2.Socket.SendText('drivers');
+      listForm.GridC.RowCount := 2;
+      Client3.Socket.SendText('counters');
+      Grid.RowCount := 2;
+      Grid1.RowCount := 2;
+      Grid.Rows[1].Clear;
+      Grid1.Rows[1].Clear;
+      Client1.Socket.SendText('admin');
+    end;
+end;
 1:
 begin
   delete(InputM,1,6);
@@ -813,10 +831,10 @@ procedure TMainForm.Client1Connect(Sender: TObject;
   Socket: TCustomWinSocket);
 begin
 Client2.Active := false;
-Client2.Host := edit1.Text;
+Client2.Host := loginForm.edit3.Text;
 Client2.Active := true;
 Client3.Active := false;
-Client3.Host := edit1.Text;
+Client3.Host := loginForm.edit3.Text;
 Client3.Active := true;
 Button6.Caption := 'Reconnect';
 end;
