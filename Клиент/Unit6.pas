@@ -1,0 +1,247 @@
+unit Unit6;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls;
+
+type
+  TcounterAddForm = class(TForm)
+    Button1: TButton;
+    Edit1: TEdit;
+    Edit2: TEdit;
+    Edit3: TEdit;
+    Edit4: TEdit;
+    Edit5: TEdit;
+    Edit6: TEdit;
+    Edit7: TEdit;
+    Edit8: TEdit;
+    Edit9: TEdit;
+    Edit10: TEdit;
+    Edit11: TEdit;
+    Edit12: TEdit;
+    Edit13: TEdit;
+    Edit14: TEdit;
+    Edit15: TEdit;
+    Edit16: TEdit;
+    Edit17: TEdit;
+    Edit18: TEdit;
+    Edit19: TEdit;
+    Edit20: TEdit;
+    Edit21: TEdit;
+    Edit22: TEdit;
+    Edit23: TEdit;
+    Edit24: TEdit;
+    Edit25: TEdit;
+    Edit26: TEdit;
+    Edit27: TEdit;
+    Edit28: TEdit;
+    Edit29: TEdit;
+    Edit30: TEdit;
+    Edit31: TEdit;
+    Edit32: TEdit;
+    ComboBox1: TComboBox;
+    ComboBox2: TComboBox;
+    ComboBox3: TComboBox;
+    ComboBox4: TComboBox;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    Label8: TLabel;
+    Label9: TLabel;
+    Label10: TLabel;
+    Label11: TLabel;
+    Label12: TLabel;
+    Label13: TLabel;
+    Label14: TLabel;
+    Label15: TLabel;
+    Label16: TLabel;
+    Label17: TLabel;
+    Label18: TLabel;
+    Label19: TLabel;
+    Label20: TLabel;
+    Label21: TLabel;
+    Label22: TLabel;
+    Label23: TLabel;
+    Label24: TLabel;
+    Label25: TLabel;
+    Label26: TLabel;
+    Label27: TLabel;
+    Edit33: TEdit;
+    Edit34: TEdit;
+    procedure FormCreate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure EditChange(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+    procedure ComboBoxChange(Sender: TObject);
+    procedure Edit34Click(Sender: TObject);
+    procedure EditNameKeyPress(Sender: TObject; var Key: Char);
+    procedure EditNameKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure EditNumKeyPress(Sender: TObject; var Key: Char);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  counterAddForm: TcounterAddForm;
+
+procedure loadCInfPage();
+
+implementation
+
+uses Unit1, Unit3, Unit8;
+
+{$R *.dfm}
+
+procedure loadCInfPage();
+begin
+counterAddForm.Edit33.Text := Unit1.CounterInf[0];
+counterAddForm.Edit1.Text := Unit1.CounterInf[1];
+counterAddForm.Edit2.Text := Unit1.CounterInf[2];
+counterAddForm.Edit3.Text := Unit1.CounterInf[3];
+counterAddForm.Edit4.Text := Unit1.CounterInf[4];
+counterAddForm.Edit5.Text := Unit1.CounterInf[5];
+counterAddForm.Edit6.Text := Unit1.CounterInf[6];
+counterAddForm.Edit7.Text := Unit1.CounterInf[7];
+counterAddForm.Edit8.Text := Unit1.CounterInf[8];
+counterAddForm.Edit9.Text := Unit1.CounterInf[9];
+counterAddForm.Edit10.Text := Unit1.CounterInf[11];
+counterAddForm.Edit11.Text := Unit1.CounterInf[15];
+counterAddForm.Edit12.Text := Unit1.CounterInf[16];
+
+counterAddForm.Edit23.Text := Unit1.CounterInf[17];
+counterAddForm.Edit13.Text := Unit1.CounterInf[18];
+counterAddForm.Edit17.Text := Unit1.CounterInf[19];
+counterAddForm.Edit20.Text := Unit1.CounterInf[20];
+
+counterAddForm.Edit24.Text := Unit1.CounterInf[21];
+counterAddForm.Edit14.Text := Unit1.CounterInf[22];
+counterAddForm.Edit18.Text := Unit1.CounterInf[23];
+counterAddForm.Edit21.Text := Unit1.CounterInf[24];
+
+counterAddForm.Edit25.Text := Unit1.CounterInf[25];
+counterAddForm.Edit15.Text := Unit1.CounterInf[26];
+counterAddForm.Edit19.Text := Unit1.CounterInf[27];
+counterAddForm.Edit22.Text := Unit1.CounterInf[28];
+
+counterAddForm.Edit16.Text := Unit1.CounterInf[29];
+counterAddForm.Edit32.Text := Unit1.CounterInf[30];
+counterAddForm.ComboBox1.Text := Unit1.CounterInf[10];
+counterAddForm.ComboBox2.Text := Unit1.CounterInf[12];
+counterAddForm.ComboBox3.Text := Unit1.CounterInf[13];
+counterAddForm.ComboBox4.Text := Unit1.CounterInf[14];
+end;
+
+
+procedure TcounterAddForm.FormCreate(Sender: TObject);
+begin
+Label1.Caption := 'Çàêàç÷èê'; Label2.Caption := 'êîä â ÀÒÈ'; Label3.Caption := 'ÈÍÍ';
+Label4.Caption := 'ÊÏÏ'; Label5.Caption := 'ÎÃĞÍ'; Label6.Caption := 'ğ/ñ÷åò';
+Label7.Caption := 'áàíê'; Label8.Caption := 'ÁÈÊ'; Label9.Caption := 'êîğğ.ñ÷åò';
+Label10.Caption := 'ğóêîâîäèòåëü'; Label11.Caption := 'Ô.È.Î.'; Label12.Caption := 'ôèğìà-ñàòåëèò';
+Label13.Caption := 'ôèğìà-ñàòåëèò'; Label14.Caption := 'ôèğìà-ñàòåëèò'; Label15.Caption := 'şğ. àäğåñ';
+Label16.Caption := 'ïî÷ò. àäğåñ'; Label17.Caption := 'òåë.'; Label18.Caption := 'òåë.';
+Label19.Caption := 'òåë.'; Label20.Caption := 'ôàêñ'; Label21.Caption := 'ìîá. òåë.';
+Label22.Caption := 'ìîá. òåë.'; Label23.Caption := 'ìîá. òåë.'; Label24.Caption := 'ICQ';
+Label25.Caption := 'ICQ'; Label26.Caption := 'ICQ'; Label27.Caption := 'äîï. èíôîğìàöèÿ';
+
+Label1.Left := 120 - Label1.Width; Label2.Left := 120 - Label2.Width;
+Label3.Left := 120 - Label3.Width; Label4.Left := 120 - Label4.Width;
+Label5.Left := 120 - Label5.Width; Label6.Left := 120 - Label6.Width;
+Label7.Left := 120 - Label7.Width; Label8.Left := 120 - Label8.Width;
+Label9.Left := 120 - Label9.Width; Label10.Left := 120 - Label10.Width;
+Label11.Left := 120 - Label11.Width; Label12.Left := 120 - Label12.Width;
+Label13.Left := 120 - Label13.Width; Label14.Left := 120 - Label14.Width;
+Label27.Left := 120 - Label27.Width;
+Label15.Left := 464 - Label15.Width; Label16.Left := 464 - Label16.Width;
+Label17.Left := 464 - Label17.Width; Label18.Left := 464 - Label18.Width;
+Label19.Left := 464 - Label19.Width; Label20.Left := 464 - Label20.Width;
+Label21.Left := 464 - Label21.Width; Label22.Left := 464 - Label22.Width;
+Label23.Left := 464 - Label23.Width; Label24.Left := 464 - Label24.Width;
+Label25.Left := 464 - Label25.Width; Label26.Left := 464 - Label26.Width;
+
+ComboBox1.Items.LoadFromFile('head.inf');
+end;
+
+procedure TcounterAddForm.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+if driversForm.Visible then
+  driversForm.Enabled := true
+else
+  listForm.Enabled := true;
+end;
+
+procedure TcounterAddForm.EditChange(Sender: TObject);
+begin
+with (Sender as TEdit) do
+  begin
+    case Tag of
+    17: begin edit26.Text := Text; edit29.Text := Text; end;
+    21: begin edit27.Text := Text; edit30.Text := Text; end;
+    25: begin edit28.Text := Text; edit31.Text := Text; end;
+    end;
+    Unit1.CounterInf[Tag] := Text;
+  end;
+end;
+
+procedure TcounterAddForm.ComboBoxChange(Sender: TObject);
+begin with (Sender as TComboBox) do Unit1.CounterInf[Tag] := Text; end;
+
+procedure TcounterAddForm.Button1Click(Sender: TObject);
+var OutputM: string;
+    i: integer;
+begin
+if RowSelected = -1 then
+  OutputM := '#cnew'
+else
+  OutputM := '#crewrite';
+
+for i := 0 to 30 do
+  OutputM := OutputM + Unit1.CounterInf[i] + ';';
+
+listForm.Enabled := true;
+mainForm.Client3.Socket.SendText(OutputM);
+if RowSelected = -1 then
+  begin
+    listForm.GridC.RowCount := 2;
+    mainForm.Client3.Socket.SendText('counters');
+  end;
+counterAddForm.Close;
+end;
+
+procedure TcounterAddForm.Edit34Click(Sender: TObject);
+var i: integer;
+    OutputM: string;
+begin
+if RowSelected = -1 then
+  OutputM := '#cnew'
+else
+  OutputM := '#crewrite';
+for i := 0 to 30 do
+  OutputM := OutputM + Unit1.CounterInf[i] + ';';
+
+edit34.Text := OutputM;
+end;
+
+procedure TcounterAddForm.EditNameKeyPress(Sender: TObject; var Key: Char);
+begin key := #0; end;
+procedure TcounterAddForm.EditNameKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin key := 0; end;
+
+procedure TcounterAddForm.EditNumKeyPress(Sender: TObject; var Key: Char);
+begin
+if not(((key >= '0')and(key <= '9'))or(key =#8)) then
+  key := #0;
+end;
+
+end.
