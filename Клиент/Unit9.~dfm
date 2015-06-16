@@ -1,8 +1,8 @@
 object loginForm: TloginForm
   Left = 414
   Top = 150
-  Width = 484
-  Height = 309
+  Width = 217
+  Height = 220
   Caption = 'loginForm'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET

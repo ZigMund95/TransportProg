@@ -1,8 +1,8 @@
 object loginForm: TloginForm
-  Left = 414
-  Top = 150
+  Left = 397
+  Top = 130
   Width = 217
-  Height = 247
+  Height = 216
   Caption = 'loginForm'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -10,6 +10,7 @@ object loginForm: TloginForm
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Font.Style = []
+  Menu = MainMenu1
   OldCreateOrder = False
   Visible = True
   OnCreate = FormCreate
@@ -72,24 +73,9 @@ object loginForm: TloginForm
     ParentFont = False
     TabOrder = 3
   end
-  object Button3: TButton
-    Left = 8
-    Top = 96
-    Width = 89
-    Height = 25
-    Caption = 'Button3'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -13
-    Font.Name = 'MS Sans Serif'
-    Font.Style = []
-    ParentFont = False
-    TabOrder = 4
-    OnClick = Button3Click
-  end
   object Edit3: TEdit
     Left = 8
-    Top = 128
+    Top = 104
     Width = 185
     Height = 24
     Font.Charset = DEFAULT_CHARSET
@@ -98,24 +84,35 @@ object loginForm: TloginForm
     Font.Name = 'MS Sans Serif'
     Font.Style = []
     ParentFont = False
-    TabOrder = 5
+    TabOrder = 4
     Text = '127.0.0.1'
     Visible = False
   end
-  object Button4: TButton
+  object Button3: TButton
     Left = 120
-    Top = 152
+    Top = 128
     Width = 75
     Height = 25
-    Caption = 'Button4'
+    Caption = 'Button3'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -13
     Font.Name = 'MS Sans Serif'
     Font.Style = []
     ParentFont = False
-    TabOrder = 6
+    TabOrder = 5
     Visible = False
-    OnClick = Button4Click
+    OnClick = Button3Click
+  end
+  object MainMenu1: TMainMenu
+    Left = 168
+    Top = 88
+    object N1: TMenuItem
+      Caption = #1040#1076#1088#1077#1089' '#1089#1077#1088#1074#1077#1088#1072
+      OnClick = N1Click
+    end
+    object N2: TMenuItem
+      Caption = #1042#1099#1093#1086#1076
+    end
   end
 end

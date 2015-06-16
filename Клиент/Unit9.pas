@@ -12,13 +12,15 @@ type
     Edit2: TEdit;
     Button1: TButton;
     Button2: TButton;
-    Button3: TButton;
     Edit3: TEdit;
-    Button4: TButton;
+    Button3: TButton;
+    MainMenu1: TMainMenu;
+    N1: TMenuItem;
+    N2: TMenuItem;
     procedure FormCreate(Sender: TObject);
     procedure Button1Click(Sender: TObject);
-    procedure Button4Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
+    procedure N1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -36,10 +38,12 @@ uses Unit1;
 
 procedure TloginForm.FormCreate(Sender: TObject);
 begin
+loginForm.Height := 145;
 Edit1.Text := '';
 Edit2.Text := '';
 Button1.Caption := 'OK';
 Button2.Caption := 'Выход';
+Button3.Caption := 'ОК';
 end;
 
 procedure TloginForm.Button1Click(Sender: TObject);
@@ -47,7 +51,7 @@ begin
 mainForm.Client1.Socket.SendText('#login'+edit1.Text+';'+edit2.Text);
 end;
 
-procedure TloginForm.Button4Click(Sender: TObject);
+procedure TloginForm.Button3Click(Sender: TObject);
 var IP: TStrings;
     Port: integer;
 begin
@@ -69,17 +73,19 @@ IP.SaveToFile('ip.inf');
 IP.Free;
 end;
 
-procedure TloginForm.Button3Click(Sender: TObject);
+procedure TloginForm.N1Click(Sender: TObject);
 begin
 if edit3.Visible then
   begin
     edit3.Visible := false;
-    Button4.Visible := false;
+    Button3.Visible := false;
+    loginForm.Height := 145;
   end
 else
   begin
     edit3.Visible := true;
-    Button4.Visible := true;
+    Button3.Visible := true;
+    loginForm.Height := 220;
   end;
 end;
 
