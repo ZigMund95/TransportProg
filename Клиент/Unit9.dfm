@@ -1,6 +1,6 @@
 object loginForm: TloginForm
-  Left = 397
-  Top = 130
+  Left = 349
+  Top = 133
   Width = 217
   Height = 216
   Caption = 'loginForm'
@@ -29,6 +29,7 @@ object loginForm: TloginForm
     ParentFont = False
     TabOrder = 0
     Text = 'Edit1'
+    OnKeyPress = Edit1KeyPress
   end
   object Edit2: TEdit
     Left = 8
@@ -41,8 +42,10 @@ object loginForm: TloginForm
     Font.Name = 'MS Sans Serif'
     Font.Style = []
     ParentFont = False
+    PasswordChar = '*'
     TabOrder = 1
     Text = 'Edit2'
+    OnKeyPress = Edit2KeyPress
   end
   object Button1: TButton
     Left = 8
@@ -105,8 +108,8 @@ object loginForm: TloginForm
     OnClick = Button3Click
   end
   object MainMenu1: TMainMenu
-    Left = 168
-    Top = 88
+    Left = 8
+    Top = 128
     object N1: TMenuItem
       Caption = #1040#1076#1088#1077#1089' '#1089#1077#1088#1074#1077#1088#1072
       OnClick = N1Click
@@ -114,5 +117,13 @@ object loginForm: TloginForm
     object N2: TMenuItem
       Caption = #1042#1099#1093#1086#1076
     end
+  end
+  object XPManifest1: TXPManifest
+    Left = 40
+    Top = 128
+  end
+  object VistaAltFix1: TVistaAltFix
+    Left = 72
+    Top = 128
   end
 end

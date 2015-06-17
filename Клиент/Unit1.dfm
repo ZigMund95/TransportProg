@@ -17,23 +17,6 @@ object MainForm: TMainForm
   OnResize = FormResize
   PixelsPerInch = 96
   TextHeight = 13
-  object Button6: TButton
-    Left = 136
-    Top = 8
-    Width = 75
-    Height = 25
-    Caption = 'Button6'
-    TabOrder = 3
-    OnClick = Button6Click
-  end
-  object Edit1: TEdit
-    Left = 8
-    Top = 8
-    Width = 121
-    Height = 21
-    TabOrder = 1
-    Text = '127.0.0.1'
-  end
   object Grid: TStringGrid
     Left = 776
     Top = 8
@@ -56,9 +39,8 @@ object MainForm: TMainForm
     Height = 353
     DefaultColWidth = 10
     FixedCols = 3
-    Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goRowSelect]
     PopupMenu = PopupMenu1
-    TabOrder = 2
+    TabOrder = 1
     OnDblClick = GridDblClick
     OnDrawCell = GridDrawCell
     OnMouseDown = GridMouseDown
@@ -76,8 +58,16 @@ object MainForm: TMainForm
     Width = 75
     Height = 25
     Caption = 'Button2'
-    TabOrder = 4
+    TabOrder = 2
     OnClick = Button2Click
+  end
+  object Button1: TButton
+    Left = 744
+    Top = 264
+    Width = 75
+    Height = 25
+    Caption = 'Button1'
+    TabOrder = 3
   end
   object MainMenu1: TMainMenu
     Left = 736

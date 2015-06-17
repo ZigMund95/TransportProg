@@ -538,4 +538,12 @@ object driversAddForm: TdriversAddForm
     Text = 'Edit15'
     OnClick = Edit15Click
   end
+  object Button2: TButton
+    Left = 352
+    Top = 248
+    Width = 75
+    Height = 25
+    Caption = 'Button2'
+    TabOrder = 20
+  end
 end

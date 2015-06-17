@@ -25,6 +25,7 @@ type
     Edit1: TEdit;
     Server2: TServerSocket;
     Server3: TServerSocket;
+    Button2: TButton;
     procedure Server1ClientRead(Sender: TObject;
       Socket: TCustomWinSocket);
     procedure FormCreate(Sender: TObject);
@@ -35,6 +36,8 @@ type
     procedure Button1Click(Sender: TObject);
     procedure Server2ClientRead(Sender: TObject; Socket: TCustomWinSocket);
     procedure Server3ClientRead(Sender: TObject; Socket: TCustomWinSocket);
+    procedure RadioButton4Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -67,6 +70,9 @@ table3.DatabaseName := 'resources\';
 table3.TableName := 'counter.db';
 table3.Active := true;
 Table3.IndexName := 'indName';
+table4.DatabaseName := 'resources\';
+table4.TableName := 'users.db';
+table4.Active := true;
 end;
 
 procedure TForm1.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -74,6 +80,7 @@ begin
 table1.Active := false;
 table2.Active := false;
 table3.Active := false;
+table4.Active := false;
 server1.Active := false;
 server2.Active := false;
 server3.Active := false;
@@ -86,7 +93,7 @@ var InputM, OutputM,s: string;
 begin
 InputM := Socket.ReceiveText;
 if copy(InputM,1,6) = '#login' then InputN := 0;
-if InputM = 'admin' then InputN := 1;
+if pos('reisi',InputM) = 1 then InputN := 1;
 if copy(InputM,1,4) = '#new' then InputN := 4;
 if copy(InputM,1,8) = '#rewrite' then InputN := 7;
 edit1.Text := inttostr(InputN);
@@ -96,20 +103,27 @@ begin
   delete(InputM,1,6);
   s := copy(InputM,1,pos(';',InputM)-1);
   delete(InputM,1,pos(';',InputM));
-  if s = InputM then
-    Socket.SendText('#loginYes')
+  table4.First;
+  while (s <> table4.Fields[1].AsString)and(not table4.Eof) do
+    table4.Next;
+  if table4.Fields[2].AsString = InputM then
+    Socket.SendText('#loginYes'+table4.Fields[0].AsString)
   else
    Socket.SendText('#loginNo');
 end;
 1:
 begin
+  delete(InputM,1,5);
   Table1.First;
   while not Table1.Eof do
     begin
-      OutputM := '#reisi';
-      for i := 0 to 50 do
-        OutputM := OutputM + Table1.Fields[i].asstring + ';';
-      Socket.SendText(OutputM);
+      if (table1.Fields[2].AsString = InputM)or(InputM = '0') then
+        begin
+          OutputM := '#reisi';
+          for i := 0 to 50 do
+            OutputM := OutputM + Table1.Fields[i].asstring + ';';
+          Socket.SendText(OutputM);
+        end;
       Table1.Next;
     end
 end;
@@ -163,7 +177,10 @@ else
   if radioButton2.Checked then
     dataSource1.DataSet := Table2
   else
-    dataSource1.DataSet := Table3;
+    if radioButton3.Checked then
+      dataSource1.DataSet := Table3
+    else
+      dataSource1.DataSet := Table4;
 end;
 
 procedure TForm1.RadioButton2Click(Sender: TObject);
@@ -174,7 +191,10 @@ else
   if radioButton2.Checked then
     dataSource1.DataSet := Table2
   else
-    dataSource1.DataSet := Table3;
+    if radioButton3.Checked then
+      dataSource1.DataSet := Table3
+    else
+      dataSource1.DataSet := Table4;
 end;
 
 procedure TForm1.RadioButton3Click(Sender: TObject);
@@ -185,7 +205,10 @@ else
   if radioButton2.Checked then
     dataSource1.DataSet := Table2
   else
-    dataSource1.DataSet := Table3;
+    if radioButton3.Checked then
+      dataSource1.DataSet := Table3
+    else
+      dataSource1.DataSet := Table4;
 end;
 
 procedure TForm1.Button1Click(Sender: TObject);
@@ -318,6 +341,28 @@ begin
   table3.Post;
 end;
 end;
+end;
+
+procedure TForm1.RadioButton4Click(Sender: TObject);
+begin
+if radioButton1.Checked then
+  dataSource1.DataSet := Table1
+else
+  if radioButton2.Checked then
+    dataSource1.DataSet := Table2
+  else
+    if radioButton3.Checked then
+      dataSource1.DataSet := Table3
+    else
+      dataSource1.DataSet := Table4;
+end;
+
+procedure TForm1.Button2Click(Sender: TObject);
+begin
+{table4.Edit;
+table4.Fields[1].AsString := 'manager1';
+table4.Post; }
+//table4.InsertRecord([0,'admin','933599','']);
 end;
 
 end.

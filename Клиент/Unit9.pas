@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, Menus, ScktComp;
+  Dialogs, StdCtrls, Menus, ScktComp, VistaAltFixUnit, XPMan;
 
 type
   TloginForm = class(TForm)
@@ -17,10 +17,14 @@ type
     MainMenu1: TMainMenu;
     N1: TMenuItem;
     N2: TMenuItem;
+    XPManifest1: TXPManifest;
+    VistaAltFix1: TVistaAltFix;
     procedure FormCreate(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure N1Click(Sender: TObject);
+    procedure Edit2KeyPress(Sender: TObject; var Key: Char);
+    procedure Edit1KeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
   public
@@ -37,18 +41,38 @@ uses Unit1;
 {$R *.dfm}
 
 procedure TloginForm.FormCreate(Sender: TObject);
+var IP, Login: TStrings;
 begin
+
+IP := TStringList.Create;
+IP.LoadFromFile('ip.inf');
+edit3.Text := IP[0];
+Unit1.FieldVision[0] := true;
+IP.Free;
+
 loginForm.Height := 145;
-Edit1.Text := '';
 Edit2.Text := '';
 Button1.Caption := 'OK';
 Button2.Caption := 'Выход';
 Button3.Caption := 'ОК';
+
+Login := TStringList.Create;
+Login.LoadFromFile('login.inf');
+if Login.Count > 0 then
+    edit1.Text := Login[0];
+Login.Free;
 end;
 
 procedure TloginForm.Button1Click(Sender: TObject);
+var Login: TStrings;
 begin
 mainForm.Client1.Socket.SendText('#login'+edit1.Text+';'+edit2.Text);
+
+Login := TStringList.Create;
+Login.Add(edit1.Text);
+Login.SaveToFile('login.inf');
+Login.Free;
+
 end;
 
 procedure TloginForm.Button3Click(Sender: TObject);
@@ -88,5 +112,10 @@ else
     loginForm.Height := 220;
   end;
 end;
+
+procedure TloginForm.Edit2KeyPress(Sender: TObject; var Key: Char);
+begin if key = #13 then button1.Click; end;
+procedure TloginForm.Edit1KeyPress(Sender: TObject; var Key: Char);
+begin if key = #13 then edit2.SetFocus; end;
 
 end.
