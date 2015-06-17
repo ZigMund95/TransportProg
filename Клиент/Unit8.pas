@@ -83,7 +83,7 @@ GridD.ColCount := 16;
 GridD.RowCount := 2;
 GridC.ColCount := 33;
 GridC.RowCount := 2;
-Grid.Top := 8;
+Grid.Top := 32;
 Button1.Caption := 'Добавить нового';
 
 GridD.Cells[0,0] := ''; GridD.Cells[1,0] := 'IND';
@@ -120,7 +120,7 @@ end;
 
 procedure TlistForm.FormResize(Sender: TObject);
 begin
-Grid.Height := listForm.ClientHeight - 16;
+Grid.Height := listForm.ClientHeight - 40;
 Grid.Width := listForm.ClientWidth - 16;
 end;
 
@@ -187,6 +187,7 @@ else
         begin
           Grid.Rows[Grid.RowCount-1] := GridD.Rows[i];
           Grid.RowCount := Grid.RowCount + 1;
+          Grid.Rows[Grid.RowCount-1].Clear;
         end
 end
 else

@@ -83,6 +83,7 @@ object Form1: TForm1
     Height = 17
     Caption = 'RadioButton4'
     TabOrder = 6
+    OnClick = RadioButton4Click
   end
   object Edit1: TEdit
     Left = 560
@@ -91,6 +92,15 @@ object Form1: TForm1
     Height = 21
     TabOrder = 7
     Text = 'Edit1'
+  end
+  object Button2: TButton
+    Left = 536
+    Top = 336
+    Width = 75
+    Height = 25
+    Caption = 'Button2'
+    TabOrder = 8
+    OnClick = Button2Click
   end
   object Server1: TServerSocket
     Active = False

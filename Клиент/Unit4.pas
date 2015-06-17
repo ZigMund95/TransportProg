@@ -44,6 +44,7 @@ type
     Memo1: TMemo;
     Edit14: TEdit;
     Edit15: TEdit;
+    Button2: TButton;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure Button1Click(Sender: TObject);
@@ -190,7 +191,7 @@ driversAddForm.Edit1.Text := ''; driversAddForm.Edit2.Text := '';
 driversAddForm.Edit3.Text := ''; driversAddForm.Edit4.Text := '___-___-____';
 driversAddForm.Edit5.Text := '___-___-____'; driversAddForm.Edit6.Text := '____ ______';
 driversAddForm.Edit7.Text := ''; driversAddForm.Edit8.Text := '';
-driversAddForm.DateTimePicker1.Date := strtodate('01.01.0001');
+driversAddForm.DateTimePicker1.Date := floattodatetime(0);strtodate('01.01.0001');
 driversAddForm.Edit9.Text := ''; driversAddForm.Edit10.Text := '';
 comboBox1.ItemIndex := -1; comboBox2.ItemIndex := -1;
 comboBox1.Text := ''; comboBox2.Text := '';
@@ -393,5 +394,6 @@ for i := 0 to 14 do
   s := s + Unit1.DriveInf[i] + ';';
 edit15.Text := s;
 end;
+
 
 end.

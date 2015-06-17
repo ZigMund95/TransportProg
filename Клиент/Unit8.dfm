@@ -36,7 +36,7 @@ object listForm: TlistForm
   end
   object Grid: TStringGrid
     Left = 8
-    Top = 48
+    Top = 32
     Width = 513
     Height = 353
     DefaultColWidth = 10

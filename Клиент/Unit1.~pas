@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, DBCtrls, ScktComp, ExtCtrls, Grids, Menus, ComCtrls,
-  ImgList, ShellApi;
+  ImgList, ShellApi, XPMan, VistaAltFixUnit;
 
 type
   TMainForm = class(TForm)
@@ -27,7 +27,6 @@ type
     N15: TMenuItem;
     Grid: TStringGrid;
     Client1: TClientSocket;
-    Edit1: TEdit;
     PopupMenu1: TPopupMenu;
     qwe1: TMenuItem;
     wer1: TMenuItem;
@@ -36,15 +35,14 @@ type
     N31: TMenuItem;
     N41: TMenuItem;
     N51: TMenuItem;
-    Button6: TButton;
     Client2: TClientSocket;
     Client3: TClientSocket;
     Button2: TButton;
+    Button1: TButton;
     procedure FormCreate(Sender: TObject);
     procedure FormResize(Sender: TObject);
     procedure N1Click(Sender: TObject);
     procedure Client1Read(Sender: TObject; Socket: TCustomWinSocket);
-    procedure Button1Click(Sender: TObject);
     procedure GridDrawCell(Sender: TObject; ACol, ARow: Integer;
       Rect: TRect; State: TGridDrawState);
     procedure N15Click(Sender: TObject);
@@ -59,7 +57,6 @@ type
     procedure Button4Click(Sender: TObject);
     procedure popupClick(Sender: TObject);
     procedure N51Click(Sender: TObject);
-    procedure Button6Click(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure Client2Read(Sender: TObject; Socket: TCustomWinSocket);
     procedure Client3Read(Sender: TObject; Socket: TCustomWinSocket);
@@ -151,6 +148,7 @@ end;
 procedure FilterGrid();
 var i,j,k: integer;
     t: boolean;
+    R: TRect;
 begin
 mainForm.Grid1.RowCount := 2;
 for j := 1 to 35 do
@@ -158,6 +156,7 @@ for j := 1 to 35 do
       mainForm.Grid1.Cells[j,0] := Filter[j,0]
     else
       mainForm.Grid1.Cells[j,0] := Filter[j,0]+'(*)';
+
 
 for i := 1 to mainForm.Grid.RowCount - 1 do
   begin
@@ -217,19 +216,12 @@ end;
 
 procedure TMainForm.FormCreate(Sender: TObject);
 var i:integer;
-    IP: TStrings;
     s: string;
 begin
 
-IP := TStringList.Create;
-IP.LoadFromFile('ip.inf');
-edit1.Text := IP[0];
-Unit1.FieldVision[0] := true;
-IP.Free;
-
 for i := 1 to 60 do Unit1.FieldVision[i] := true;
 //подключение к серверу
-Client1.Host := edit1.Text;
+Client1.Host := loginForm.Edit3.Text;
 Client1.Active := true;
 //задаём первоначальные размеры таблицы и названия колонок
 Grid1.Top := 8;
@@ -266,10 +258,12 @@ end;
 procedure TMainForm.GridDrawCell(Sender: TObject; ACol, ARow: Integer;
   Rect: TRect; State: TGridDrawState);
 var ColorBR, ColorP: TColor;
+    R: TRect;
 begin
 ColumnWidthAlign(Sender);
 if (Grid1.Cells[1,Grid1.RowCount-2] = '')and(Grid1.RowCount > 2) then
   Grid1.RowCount := Grid1.RowCount - 1;
+//каждая третья строка серая
 if (ARow mod 3 = 0)and(ARow > 0)and(ACol > 2)and(RowSelected <> ARow) then
   begin
     ColorBr := Grid1.Canvas.Brush.Color;
@@ -281,19 +275,23 @@ if (ARow mod 3 = 0)and(ARow > 0)and(ACol > 2)and(RowSelected <> ARow) then
     Grid1.Canvas.Brush.Color := ColorBr;
     Grid1.Canvas.Pen.Color := ColorP;
   end;
+//красный текс при срыве
 if (Grid1.Cells[2,ARow] = 'срыв!')and(ARow > 0) then
   begin
-    {ColorBr := Grid1.Canvas.Brush.Color;
-    Grid1.Canvas.Brush.Color := RGB(245,100,100);
-    Grid1.Canvas.Rectangle(Rect);
-    Grid1.Canvas.TextRect(Rect,Rect.Left+2,Rect.Top+2,Grid1.Cells[ACol,ARow]);
-    Grid1.Canvas.Brush.Color := ColorBr;
-    Grid1.Canvas.Pen.Color := ColorP; }
     Grid1.Canvas.Font.Color := RGB(240,0,0);
     Grid1.Canvas.TextRect(Rect,Rect.Left+2,Rect.Top+2,Grid1.Cells[ACol,ARow]);
     Grid1.Canvas.Font.Color := RGB(0,0,0);
   end;
 
+if (Filter[ACol,1] <> 'Все')and(ACol>0) then
+  begin
+    ColorBr := Grid1.Canvas.Brush.Color;
+    R := Grid1.CellRect(ACol,0);
+    Grid1.Canvas.Brush.Color := RGB(137,172,118);
+    Grid1.Canvas.Rectangle(R);
+    Grid1.Canvas.TextOut(R.Left+2, R.Top+2, Grid1.Cells[ACol,0]);
+    Grid1.Canvas.Brush.Color := ColorBr;
+  end;
 end;
 
 //входящие сообщения от базы заявок
@@ -314,10 +312,12 @@ case InputN of
 0:
 begin
   delete(InputM,1,6);
-  if InputM = 'Yes' then
+  if pos('Yes', InputM) = 1 then
     begin
       mainForm.Visible := true;
       loginForm.Visible := false;
+      delete(InputM,1,3);
+      cardForm.Edit30.Text := InputM;
       listForm.GridD.RowCount := 2;
       Client2.Socket.SendText('drivers');
       listForm.GridC.RowCount := 2;
@@ -326,8 +326,12 @@ begin
       Grid1.RowCount := 2;
       Grid.Rows[1].Clear;
       Grid1.Rows[1].Clear;
-      Client1.Socket.SendText('admin');
-    end;
+      Client1.Socket.SendText('reisi'+cardForm.Edit30.Text);
+    end
+  else
+    MessageDlgPos('Неверный логин или пароль.',
+              mtError, [mbOK], 0, -1, -1);
+    InputM := '';
 end;
 1:
 begin
@@ -402,21 +406,6 @@ begin
 end;
 end;
 end;
-end;
-
-//Отправка запросов на подгрузку баз данных
-procedure TMainForm.Button1Click(Sender: TObject);
-var i: integer;
-begin
-listForm.GridD.RowCount := 2;
-Client2.Socket.SendText('drivers');
-listForm.GridC.RowCount := 2;
-Client3.Socket.SendText('counters');
-Grid.RowCount := 2;
-Grid1.RowCount := 2;
-Grid.Rows[1].Clear;
-Grid1.Rows[1].Clear;
-Client1.Socket.SendText('admin');
 end;
 
 
@@ -695,28 +684,6 @@ mainForm.Enabled := false;
 filterForm.Visible := true;
 end;
 
-procedure TMainForm.Button6Click(Sender: TObject);
-var IP: TStrings;
-    Port: integer;
-begin
-//Переподключаемся к серверу
-Port := Client1.Port;
-Client1.Free;
-Client1 := TClientSocket.Create(self);
-Client1.OnConnect := Client1Connect;
-Client1.OnError := Client1Error;
-Client1.OnRead := Client1Read;
-Client1.Host := edit1.Text;
-Client1.Port := Port;
-Client1.Active := true;
-
-//Сохраняем IP-адрес сервера
-IP := TStringList.Create;
-IP.Add(edit1.text);
-IP.SaveToFile('ip.inf');
-IP.Free;
-end;
-
 //Отработка закрытия формы
 procedure TMainForm.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
@@ -815,14 +782,15 @@ end;
 //Отработка события ошибки подключения к серверу
 procedure TMainForm.Client1Error(Sender: TObject; Socket: TCustomWinSocket;
   ErrorEvent: TErrorEvent; var ErrorCode: Integer);
-var IP: string;
+var IP,IP1: string;
     Port: integer;
 begin
 if ErrorCode <> 0 then
-  MessageDlgPos('Не удалось подключиться.'+ #13 +
-              'Вероятно неправильно указан адрес сервера.',
+  MessageDlgPos('Не удалось подключиться.' + #13 +
+              'Вероятно неправильно указан адрес сервера,' + #13 +
+              'либо сервер не запущен.',
               mtError, [mbOK], 0, -1, -1);
-Button6.Caption := 'Connect';
+
 ErrorCode := 0;
 end;
 
@@ -831,12 +799,11 @@ procedure TMainForm.Client1Connect(Sender: TObject;
   Socket: TCustomWinSocket);
 begin
 Client2.Active := false;
-Client2.Host := edit1.Text;
+Client2.Host := loginForm.edit3.Text;
 Client2.Active := true;
 Client3.Active := false;
-Client3.Host := edit1.Text;
+Client3.Host := loginForm.edit3.Text;
 Client3.Active := true;
-Button6.Caption := 'Reconnect';
 end;
 
 procedure TMainForm.Button2Click(Sender: TObject);

@@ -12,6 +12,7 @@ type
     GridC: TStringGrid;
     Grid: TStringGrid;
     Button1: TButton;
+    Edit1: TEdit;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure GridDrawCell(Sender: TObject; ACol, ARow: Integer;
@@ -21,6 +22,7 @@ type
       var CanSelect: Boolean);
     procedure GridDblClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
+    procedure Edit1Change(Sender: TObject);
   private
     { Private declarations }
   public
@@ -38,6 +40,27 @@ implementation
 uses Unit1, Unit4, Unit6;
 
 {$R *.dfm}
+
+function LowerCaseKir(const S: string): string;
+var
+  Ch: Char;
+  L: Integer;
+  Source, Dest: PChar;
+begin
+  L := Length(S);
+  SetLength(Result, L);
+  Source := Pointer(S);
+  Dest := Pointer(Result);
+  while L <> 0 do
+  begin
+    Ch := Source^;
+    if ((Ch >= 'A') and (Ch <= 'Z'))or((Ch >= 'À') and (Ch <= 'ß')) then Inc(Ch, 32);
+    Dest^ := Ch;
+    Inc(Source);
+    Inc(Dest);
+    Dec(L);
+  end;
+end;
 
 procedure loadGrid(Sender: TStringGrid);
 var i: integer;
@@ -143,6 +166,48 @@ else
     for i := 0 to 30 do Unit1.CounterInf[i] := '';
     Unit6.loadCInfPage;
   end;
+end;
+
+procedure TlistForm.Edit1Change(Sender: TObject);
+var i: integer;
+begin
+if Grid.ColCount = GridD.ColCount then
+begin
+Grid.RowCount := 2;
+Grid.Rows[1].Clear;
+if edit1.Text = '' then
+  for i := 1 to GridD.RowCount - 2 do
+    begin
+      Grid.Rows[Grid.RowCount-1] := GridD.Rows[i];
+      Grid.RowCount := Grid.RowCount + 1;
+    end
+else
+  for i := 1 to GridD.RowCount - 2 do
+      if pos(lowerCaseKir(edit1.Text), lowerCaseKir(GridD.Cells[2,i])) = 1 then
+        begin
+          Grid.Rows[Grid.RowCount-1] := GridD.Rows[i];
+          Grid.RowCount := Grid.RowCount + 1;
+          Grid.Rows[Grid.RowCount-1].Clear;
+        end
+end
+else
+begin
+Grid.RowCount := 2;
+Grid.Rows[1].Clear;
+if edit1.Text = '' then
+  for i := 1 to GridC.RowCount - 1 do
+    begin
+      Grid.Rows[Grid.RowCount-1] := GridC.Rows[i];
+      Grid.RowCount := Grid.RowCount + 1;
+    end
+else
+  for i := 1 to GridC.RowCount - 1 do
+      if pos(lowerCaseKir(edit1.Text), lowerCaseKir(GridC.Cells[2,i])) = 1 then
+        begin
+          Grid.Rows[Grid.RowCount-1] := GridC.Rows[i];
+          Grid.RowCount := Grid.RowCount + 1;
+        end
+end
 end;
 
 end.
