@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 191
-  Top = 239
-  Width = 912
+  Left = 402
+  Top = 182
+  Width = 913
   Height = 478
   Caption = 'MainForm'
   Color = clBtnFace
@@ -17,6 +17,13 @@ object MainForm: TMainForm
   OnResize = FormResize
   PixelsPerInch = 96
   TextHeight = 13
+  object Image1: TImage
+    Left = 352
+    Top = 8
+    Width = 105
+    Height = 105
+    Stretch = True
+  end
   object Grid: TStringGrid
     Left = 776
     Top = 8
@@ -68,6 +75,15 @@ object MainForm: TMainForm
     Height = 25
     Caption = 'Button1'
     TabOrder = 3
+  end
+  object Memo1: TMemo
+    Left = 584
+    Top = 32
+    Width = 257
+    Height = 369
+    Lines.Strings = (
+      'Memo1')
+    TabOrder = 4
   end
   object MainMenu1: TMainMenu
     Left = 736

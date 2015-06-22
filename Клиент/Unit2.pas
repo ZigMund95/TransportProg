@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, ComCtrls, ExtCtrls;
+  Dialogs, StdCtrls, ComCtrls, ExtCtrls, pngimage;
 
 type
   TcardForm = class(TForm)
@@ -117,6 +117,7 @@ type
     Label33: TLabel;
     Label36: TLabel;
     Edit7: TEdit;
+    Image1: TImage;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormMouseWheelDown(Sender: TObject; Shift: TShiftState;
       MousePos: TPoint; var Handled: Boolean);
@@ -155,25 +156,150 @@ var
 
   ArrayLenth: integer;
 
+procedure loadCardPage();
+
 implementation
 
 uses Unit1, Unit3, Unit8;
 
 {$R *.dfm}
+
+procedure loadCardPage();
+begin
+
+
+cardForm.Edit1.Text := '';
+cardForm.Edit2.Text := Unit1.CardInf[5];
+cardForm.Edit3.Text := Unit1.CardInf[38];
+cardForm.Edit4.Text := Unit1.CardInf[6];
+cardForm.Edit5.Text := Unit1.CardInf[40];
+cardForm.Edit6.Text := Unit1.CardInf[41];
+cardForm.Edit7.Text := Unit1.CardInf[51];
+cardForm.Edit8.Text := Unit1.CardInf[44];
+if Unit1.CardInf[7] = '' then cardForm.Edit9.Text := '0'
+else cardForm.Edit9.Text := Unit1.CardInf[7];
+if Unit1.CardInf[9] = '' then cardForm.Edit10.Text := '0'
+else cardForm.Edit10.Text := Unit1.CardInf[9];
+if Unit1.CardInf[10] = '' then cardForm.Edit11.Text := '0'
+else cardForm.Edit11.Text := Unit1.CardInf[10];
+cardForm.Edit12.Text := '';
+cardForm.Edit13.Text := '';
+cardForm.Edit14.Text := '';
+if Unit1.CardInf[12] = '' then cardForm.Edit15.Text := '0'
+else cardForm.Edit15.Text := Unit1.CardInf[12];
+cardForm.Edit16.Text := Unit1.CardInf[46];
+cardForm.Edit17.Text := Unit1.CardInf[21];
+cardForm.Edit18.Text := Unit1.CardInf[23];
+cardForm.Edit19.Text := Unit1.CardInf[25];
+cardForm.Edit20.Text := Unit1.CardInf[27];
+cardForm.Edit21.Text := Unit1.CardInf[52];
+cardForm.Edit22.Text := Unit1.CardInf[29];
+cardForm.Edit23.Text := Unit1.CardInf[31];
+cardForm.Edit24.Text := Unit1.CardInf[33];
+cardForm.Edit25.Text := Unit1.CardInf[35];
+cardForm.Edit26.Text := Unit1.CardInf[53];
+cardForm.Edit27.Text := Unit1.CardInf[14];
+cardForm.Edit28.Text := Unit1.CardInf[20];
+cardForm.Edit29.Text := Unit1.CardInf[1];
+cardForm.Edit30.Text := Unit1.CardInf[3];
+cardForm.Edit31.Text := '';
+
+
+cardForm.ComboBox1.Text := Unit1.CardInf[4];
+if Unit1.CardInf[8] = '' then
+  cardForm.ComboBox2.Text := '?'
+else
+  cardForm.ComboBox2.Text := Unit1.CardInf[8];
+cardForm.ComboBox3.Text := Unit1.CardInf[11];
+cardForm.ComboBox4.Text := Unit1.CardInf[15];
+if Unit1.CardInf[13] = '' then
+  cardForm.ComboBox5.Text := '?'
+else
+  cardForm.ComboBox5.Text := Unit1.CardInf[13];
+
+cardForm.Memo1.Lines.Clear; cardForm.Memo1.Lines.Add(Unit1.CardInf[37]);
+cardForm.Memo2.Lines.Clear; cardForm.Memo2.Lines.Add(Unit1.CardInf[39]);
+cardForm.Memo3.Lines.Clear; cardForm.Memo3.Lines.Add(Unit1.CardInf[42]);
+cardForm.Memo4.Lines.Clear; cardForm.Memo4.Lines.Add(Unit1.CardInf[45]);
+cardForm.Memo6.Lines.Clear; cardForm.Memo6.Lines.Add(Unit1.CardInf[43]);
+
+
+if Unit1.CardInf[16] = '' then cardForm.DateTimePicker1.Date := date
+else cardForm.DateTimePicker1.Date := strtodate(Unit1.CardInf[16]);
+if Unit1.CardInf[17] = '' then cardForm.DateTimePicker2.Date := date
+else cardForm.DateTimePicker2.Date := strtodate(Unit1.CardInf[17]);
+if Unit1.CardInf[48] = '' then cardForm.DateTimePicker3.Date := date
+else cardForm.DateTimePicker3.Date := strtodate(Unit1.CardInf[48]);
+if Unit1.CardInf[49] = '' then cardForm.DateTimePicker4.Date := date
+else cardForm.DateTimePicker4.Date := strtodate(Unit1.CardInf[49]);
+if Unit1.CardInf[50] = '' then cardForm.DateTimePicker5.Date := date
+else cardForm.DateTimePicker5.Date := strtodate(Unit1.CardInf[50]);
+if Unit1.CardInf[22] = '' then cardForm.DateTimePicker6.Date := date
+else cardForm.DateTimePicker6.Date := strtodate(Unit1.CardInf[22]);
+if Unit1.CardInf[24] = '' then cardForm.DateTimePicker7.Date := date
+else cardForm.DateTimePicker7.Date := strtodate(Unit1.CardInf[24]);
+if Unit1.CardInf[26] = '' then cardForm.DateTimePicker8.Date := date
+else cardForm.DateTimePicker8.Date := strtodate(Unit1.CardInf[26]);
+if Unit1.CardInf[28] = '' then cardForm.DateTimePicker9.Date := date
+else cardForm.DateTimePicker9.Date := strtodate(Unit1.CardInf[28]);
+if Unit1.CardInf[30] = '' then cardForm.DateTimePicker10.Date := date
+else cardForm.DateTimePicker10.Date := strtodate(Unit1.CardInf[30]);
+if Unit1.CardInf[32] = '' then cardForm.DateTimePicker11.Date := date
+else cardForm.DateTimePicker11.Date := strtodate(Unit1.CardInf[32]);
+if Unit1.CardInf[34] = '' then cardForm.DateTimePicker12.Date := date
+else cardForm.DateTimePicker12.Date := strtodate(Unit1.CardInf[34]);
+if Unit1.CardInf[36] = '' then cardForm.DateTimePicker13.Date := date
+else cardForm.DateTimePicker13.Date := strtodate(Unit1.CardInf[36]);
+if Unit1.CardInf[2] = '' then cardForm.DateTimePicker14.Date := date
+else cardForm.DateTimePicker14.Date := strtodate(Unit1.CardInf[2]);
+
+if cardForm.ComboBox1.Text <> '' then
+  begin
+    findInf(listForm.GridC, cardInf[4]);
+    cardForm.Edit1.Text := a[2];
+  end;
+if cardForm.ComboBox3.Text <> '' then
+  begin
+    findInf(listForm.GridC, cardInf[11]);
+    cardForm.Edit12.Text := a[2];
+  end;
+if cardForm.ComboBox4.Text <> '' then
+  begin
+    findInf(listForm.GridD, cardInf[15]);
+    cardForm.Edit13.Text := a[2];
+    cardForm.Edit31.Text := a[3];
+    cardForm.Edit14.Text := a[10];
+  end;
+
+end;
+
+
 //переход обратно к основной форме при закрытии окна
 procedure TcardForm.FormClose(Sender: TObject; var Action: TCloseAction);
 begin MainForm.Enabled := true; end;
 //подключаем прокрутку формы с помощью колёсика мыши
 procedure TcardForm.FormMouseWheelDown(Sender: TObject; Shift: TShiftState;
   MousePos: TPoint; var Handled: Boolean);
-begin cardForm.VertScrollBar.Position := cardForm.VertScrollBar.Position + 10; end;
+begin
+cardForm.VertScrollBar.Position := cardForm.VertScrollBar.Position + 10;
+//image1.Top := image1.Top + 10;
+end;
 procedure TcardForm.FormMouseWheelUp(Sender: TObject; Shift: TShiftState;
   MousePos: TPoint; var Handled: Boolean);
-begin cardForm.VertScrollBar.Position := cardForm.VertScrollBar.Position - 10; end;
+begin
+cardForm.VertScrollBar.Position := cardForm.VertScrollBar.Position - 10;
+//image1.Top := image1.Top - 10;
+end;
 
 procedure TcardForm.FormCreate(Sender: TObject);
 var i: integer;
 begin
+image1.Picture.LoadFromFile('bg_1.png');
+image1.Left := 0;
+image1.Top := 0;
+image1.Width := cardForm.ClientWidth;
+image1.Height := cardForm.ClientHeight;
+
 for i := 1 to 51 do Unit2.EnabledField[i] := true;
 Unit2.EnabledField[2] := false;
 Unit2.EnabledField[18] := false; Unit2.EnabledField[19] := false;
@@ -239,6 +365,7 @@ var i: integer;
 begin
 cardForm.OnActivate(cardForm);
 if Edit11.Text = 'введите' then Exit;
+if DateTimePicker1.Date > DateTimePicker2.Date then Exit;
 if RowSelected = -1 then
   begin
     OutputM := '#new';
@@ -246,9 +373,12 @@ if RowSelected = -1 then
     if Unit2.EnabledField[i] or (i = 2) then
       OutputM := OutputM + CardInf[i] + ';'
     else
-      case i of
-      18,19,22,24,26,28,30,32,34,36,48,49,50: OutputM := OutputM + '1.1.0001;';
-      21,23,25,27,29,31,33,35: OutputM := OutputM + '0;';
+      begin
+        case i of
+        //18,19,22,24,26,28,30,32,34,36,48,49,50: OutputM := OutputM + '1.1.0001;';
+        21,23,25,27,29,31,33,35: OutputM := OutputM + '0';
+        end;
+        OutputM := OutputM + ';';
       end;
   end
 else
@@ -258,9 +388,12 @@ else
       if Unit2.EnabledField[i] or (i = 2) then
       OutputM := OutputM + CardInf[i] + ';'
     else
-      case i of
-      18,19,22,24,26,28,30,32,34,36,48,49,50: OutputM := OutputM + '1.1.0001;';
-      21,23,25,27,29,31,33,35: OutputM := OutputM + '0;';
+      begin
+        case i of
+        //18,19,22,24,26,28,30,32,34,36,48,49,50: OutputM := OutputM + '1.1.0001;';
+        21,23,25,27,29,31,33,35: OutputM := OutputM + '0';
+        end;
+        OutputM := OutputM + ';';
       end;
   end;
 mainForm.Enabled := true;
@@ -295,7 +428,28 @@ begin VertScrollBar.Position := 0; end;
 
 procedure TcardForm.ButtonPlusClick(Sender: TObject);
 begin
-if Sender = Button8 then SenderBox := ComboBox1;
+if Sender = Button6 then SenderBox := ComboBox1;
+if Sender = Button7 then SenderBox := ComboBox3;
+if Sender = Button8 then
+  begin
+    SenderBox := ComboBox4;
+    listForm.Grid.ColCount := listForm.GridD.ColCount;
+    listForm.Grid.RowCount := listForm.GridD.RowCount;
+    loadGrid(listForm.GridD);
+  end
+else
+  begin
+    listForm.Grid.ColCount := listForm.GridC.ColCount;
+    listForm.Grid.RowCount := listForm.GridC.RowCount;
+    loadGrid(listForm.GridC);
+    SenderEdit1 := Edit1;       
+    SenderEdit2 := Edit12;
+  end;
+
+cardForm.Enabled := false;
+listForm.Visible := true;
+
+{if Sender = Button8 then SenderBox := ComboBox1;
 if Sender = Button7 then SenderBox := ComboBox3;
 if Sender = Button6 then
   begin
@@ -315,7 +469,7 @@ else
 Unit1.GridRefresh(senderGrid);
 cardForm.Enabled := false;
 driversForm.Visible := true;
-driversForm.Edit1.SetFocus;
+driversForm.Edit1.SetFocus;  }
 end;
 
 procedure TcardForm.CheckBoxClick(Sender: TObject);

@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, DBCtrls, ScktComp, ExtCtrls, Grids, Menus, ComCtrls,
-  ImgList, ShellApi, XPMan, VistaAltFixUnit;
+  ImgList, ShellApi, XPMan, VistaAltFixUnit, Calendar;
 
 type
   TMainForm = class(TForm)
@@ -39,6 +39,7 @@ type
     Client3: TClientSocket;
     Button2: TButton;
     Button1: TButton;
+    Memo1: TMemo;
     procedure FormCreate(Sender: TObject);
     procedure FormResize(Sender: TObject);
     procedure N1Click(Sender: TObject);
@@ -326,7 +327,7 @@ begin
       Grid1.RowCount := 2;
       Grid.Rows[1].Clear;
       Grid1.Rows[1].Clear;
-      Client1.Socket.SendText('reisi'+cardForm.Edit30.Text);
+      Client1.Socket.SendText('reisi'+InputM);
     end
   else
     MessageDlgPos('Неверный логин или пароль.',
@@ -419,7 +420,12 @@ begin
 MainForm.Enabled := false;
 cardForm.Visible := true;
 cardForm.VertScrollBar.Position := 0;
-cardForm.ComboBox1.Text := ''; cardForm.ComboBox3.Text := '';
+
+for i := 1 to 51 do
+  if i <> 3 then
+    CardInf[i] := '';
+loadCardPage;
+{cardForm.ComboBox1.Text := ''; cardForm.ComboBox3.Text := '';
 cardForm.ComboBox4.Text := '';
 cardForm.ComboBox2.ItemIndex := 0; cardForm.ComboBox5.ItemIndex := 0;
 cardForm.Edit1.Text := ''; cardForm.Edit2.Text := ''; cardForm.Edit3.Text := '';
@@ -440,7 +446,7 @@ cardForm.DateTimePicker5.Date := date; cardForm.DateTimePicker6.Date := date;
 cardForm.DateTimePicker7.Date := date; cardForm.DateTimePicker8.Date := date;
 cardForm.DateTimePicker9.Date := date; cardForm.DateTimePicker10.Date := date;
 cardForm.DateTimePicker11.Date := date; cardForm.DateTimePicker12.Date := date;
-cardForm.DateTimePicker13.Date := date; cardForm.DateTimePicker14.Date := date;
+cardForm.DateTimePicker13.Date := date; cardForm.DateTimePicker14.Date := date; }
 //Вычисление номера новой заявки
 daycode := floattostr(date-(strtodate('01.01.'+copy(datetostr(date),7,4))-500));
 i := Grid.RowCount - 2;
@@ -515,7 +521,11 @@ MainForm.Enabled := false;
 cardForm.Visible := true;
 cardForm.VertScrollBar.Position := 0;
 
-cardForm.Edit7.Text := Grid1.Cells[2,RowSelected];
+for i := 0 to 50 do
+  CardInf[i+1] := Grid1.Cells[Unit1.Position[i],RowSelected];
+loadCardPage;
+
+{cardForm.Edit7.Text := Grid1.Cells[2,RowSelected];
 cardForm.ComboBox1.Text := Grid1.Cells[5,RowSelected];
 cardForm.Edit1.Text := Grid1.Cells[6,RowSelected];
 cardForm.Edit2.Text := Grid1.Cells[7,RowSelected];
@@ -581,7 +591,7 @@ cardForm.DateTimePicker14.Date := strtodate(Grid1.Cells[3,RowSelected]);
 cardForm.Edit27 .Text := Grid.Cells[19,RowSelected];
 cardForm.Edit28 .Text := Grid.Cells[29,RowSelected];
 cardForm.Edit29 .Text := Grid.Cells[1,RowSelected];
-cardForm.Edit30 .Text := Grid.Cells[4,RowSelected];
+cardForm.Edit30 .Text := Grid.Cells[4,RowSelected]; }
 end;
 
 procedure TMainForm.GridMouseDown(Sender: TObject; Button: TMouseButton;

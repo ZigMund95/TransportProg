@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, IdUDPServer, IdBaseComponent, IdComponent, IdUDPBase,
-  IdUDPClient, ScktComp, DB, DBClient, Grids, DBGrids, DBTables;
+  IdUDPClient, ScktComp, DB, DBClient, Grids, DBGrids, DBTables, MD5, Math;
 
 type
   TForm1 = class(TForm)
@@ -26,6 +26,8 @@ type
     Server2: TServerSocket;
     Server3: TServerSocket;
     Button2: TButton;
+    Edit2: TEdit;
+    Edit3: TEdit;
     procedure Server1ClientRead(Sender: TObject;
       Socket: TCustomWinSocket);
     procedure FormCreate(Sender: TObject);
@@ -106,7 +108,8 @@ begin
   table4.First;
   while (s <> table4.Fields[1].AsString)and(not table4.Eof) do
     table4.Next;
-  if table4.Fields[2].AsString = InputM then
+  s := MD5DigestToStr(MD5String(MD5DigestToStr(MD5String(InputM)) + table4.Fields[3].AsString));
+  if table4.Fields[2].AsString = s then
     Socket.SendText('#loginYes'+table4.Fields[0].AsString)
   else
    Socket.SendText('#loginNo');
@@ -219,7 +222,10 @@ else
   if DataSource1.DataSet = Table2 then
     Table2.Delete
   else
-    Table3.Delete;
+    if DataSource1.DataSet = Table3 then
+      Table3.Delete
+    else
+      Table4.Delete;
 
 end;
 
@@ -358,11 +364,49 @@ else
 end;
 
 procedure TForm1.Button2Click(Sender: TObject);
+var i: integer;
+    s: string;
 begin
 {table4.Edit;
 table4.Fields[1].AsString := 'manager1';
 table4.Post; }
 //table4.InsertRecord([0,'admin','933599','']);
+//table4.Fields[3]
+//edit3.Text := MD5DigestToStr(MD5String(edit2.Text));
+
+{memo1.Clear;
+for i := 33 to 126 do
+  memo1.Lines.Add(inttostr(i)+' '+chr(i));}
+//Randomize;
+{table4.First;
+while not table4.Eof do
+  begin
+    table4.Edit;
+    //s := '';
+    //for i := 1 to 5 do
+    //  s := s + chr(RandomRange(33,126));
+    //table4.Fields[3].AsString := s;
+    s := MD5DigestToStr(MD5String(edit2.Text));
+    s := s + table4.Fields[3].AsString;
+    s := MD5DigestToStr(MD5String(s));
+    table4.Fields[2].AsString := s;
+    table4.Post;
+    table4.Next;
+  end; }
+//table4.Delete;
+table4.InsertRecord([]);
+table4.Edit;
+table4.Fields[0].AsInteger := table4.RecordCount - 1;
+table4.Fields[1].AsString := edit2.Text;
+Randomize;
+s := '';
+for i := 1 to 5 do
+  s := s + chr(RandomRange(33,126));
+table4.Fields[3].AsString := s;
+s := MD5DigestToStr(MD5String(MD5DigestToStr(MD5String(edit3.Text)) + table4.Fields[3].AsString));
+table4.Fields[2].AsString := s;
+table4.Post;
 end;
+
 
 end.
