@@ -1,6 +1,6 @@
 object loginForm: TloginForm
-  Left = 554
-  Top = 149
+  Left = 349
+  Top = 133
   Width = 217
   Height = 216
   Caption = 'loginForm'

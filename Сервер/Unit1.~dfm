@@ -94,13 +94,29 @@ object Form1: TForm1
     Text = 'Edit1'
   end
   object Button2: TButton
-    Left = 536
-    Top = 336
+    Left = 640
+    Top = 376
     Width = 75
     Height = 25
     Caption = 'Button2'
     TabOrder = 8
     OnClick = Button2Click
+  end
+  object Edit2: TEdit
+    Left = 512
+    Top = 344
+    Width = 121
+    Height = 21
+    TabOrder = 9
+    Text = 'Edit2'
+  end
+  object Edit3: TEdit
+    Left = 512
+    Top = 368
+    Width = 121
+    Height = 21
+    TabOrder = 10
+    Text = 'Edit3'
   end
   object Server1: TServerSocket
     Active = False

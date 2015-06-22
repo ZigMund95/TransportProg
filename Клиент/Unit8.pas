@@ -4,15 +4,17 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, Grids, StdCtrls;
+  Dialogs, Grids, StdCtrls, Menus;
 
 type
   TlistForm = class(TForm)
     GridD: TStringGrid;
     GridC: TStringGrid;
     Grid: TStringGrid;
-    Button1: TButton;
     Edit1: TEdit;
+    MainMenu1: TMainMenu;
+    N1: TMenuItem;
+    Button1: TButton;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure GridDrawCell(Sender: TObject; ACol, ARow: Integer;
@@ -21,8 +23,9 @@ type
     procedure GridSelectCell(Sender: TObject; ACol, ARow: Integer;
       var CanSelect: Boolean);
     procedure GridDblClick(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
     procedure Edit1Change(Sender: TObject);
+    procedure N1Click(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -37,7 +40,7 @@ procedure loadGrid(Sender: TStringGrid);
 
 implementation
 
-uses Unit1, Unit4, Unit6;
+uses Unit1, Unit4, Unit6, Unit2;
 
 {$R *.dfm}
 
@@ -74,7 +77,10 @@ end;
 
 procedure TlistForm.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-mainForm.Enabled := true;
+if cardForm.Visible then
+  cardForm.Enabled := true
+else
+  mainForm.Enabled := true;
 end;
 
 procedure TlistForm.FormCreate(Sender: TObject);
@@ -84,7 +90,6 @@ GridD.RowCount := 2;
 GridC.ColCount := 33;
 GridC.RowCount := 2;
 Grid.Top := 32;
-Button1.Caption := 'Добавить нового';
 
 GridD.Cells[0,0] := ''; GridD.Cells[1,0] := 'IND';
 GridD.Cells[2,0] := 'Ф.И.О.'; GridD.Cells[3,0] := 'Телефон 1';
@@ -149,25 +154,6 @@ else
   end
 end;
 
-procedure TlistForm.Button1Click(Sender: TObject);
-var i: integer;
-begin
-listForm.Enabled := false;
-RowSelected := -1;
-if Grid.ColCount = GridD.ColCount then
-  begin
-    driversAddForm.Visible := true;
-    for i := 0 to 14 do Unit1.DriveInf[i] := '';
-    Unit4.loadDInfPage;
-  end
-else
-  begin
-    counterAddForm.Visible := true;
-    for i := 0 to 30 do Unit1.CounterInf[i] := '';
-    Unit6.loadCInfPage;
-  end;
-end;
-
 procedure TlistForm.Edit1Change(Sender: TObject);
 var i: integer;
 begin
@@ -195,19 +181,60 @@ begin
 Grid.RowCount := 2;
 Grid.Rows[1].Clear;
 if edit1.Text = '' then
-  for i := 1 to GridC.RowCount - 1 do
+  for i := 1 to GridC.RowCount - 2 do
     begin
       Grid.Rows[Grid.RowCount-1] := GridC.Rows[i];
       Grid.RowCount := Grid.RowCount + 1;
     end
 else
-  for i := 1 to GridC.RowCount - 1 do
+  for i := 1 to GridC.RowCount - 2 do
       if pos(lowerCaseKir(edit1.Text), lowerCaseKir(GridC.Cells[2,i])) = 1 then
         begin
           Grid.Rows[Grid.RowCount-1] := GridC.Rows[i];
           Grid.RowCount := Grid.RowCount + 1;
+          Grid.Rows[Grid.RowCount-1].Clear;
         end
 end
+end;
+
+procedure TlistForm.N1Click(Sender: TObject);
+var i: integer;
+begin
+listForm.Enabled := false;
+RowSelected := -1;
+if Grid.ColCount = GridD.ColCount then
+  begin
+    driversAddForm.Visible := true;
+    for i := 0 to 14 do Unit1.DriveInf[i] := '';
+    Unit4.loadDInfPage;
+  end
+else
+  begin
+    counterAddForm.Visible := true;
+    for i := 0 to 30 do Unit1.CounterInf[i] := '';
+    Unit6.loadCInfPage;
+  end;
+end;
+
+procedure TlistForm.Button1Click(Sender: TObject);
+begin
+with SenderBox as TComboBox do
+begin
+Text := Grid.Cells[2,RowSelected];
+case Tag of
+4: cardForm.Edit1.Text := Grid.Cells[3,RowSelected];
+11: cardForm.Edit12.Text := Grid.Cells[3,RowSelected];
+15:
+begin
+  cardForm.Edit13.Text := Grid.Cells[3,RowSelected];
+  cardForm.Edit31.Text := Grid.Cells[4,RowSelected];
+  cardForm.Edit14.Text := Grid.Cells[11,RowSelected];
+end;
+end;
+cardForm.Enabled := true;
+listForm.Close;
+end;
+
 end;
 
 end.
