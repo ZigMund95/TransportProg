@@ -52,7 +52,13 @@ object listForm: TlistForm
     Left = 8
     Top = 8
     Width = 185
-    Height = 21
+    Height = 24
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ParentFont = False
     TabOrder = 3
     Text = 'Edit1'
     OnChange = Edit1Change
@@ -63,7 +69,14 @@ object listForm: TlistForm
     Width = 75
     Height = 25
     Caption = 'Button1'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ParentFont = False
     TabOrder = 4
+    Visible = False
     OnClick = Button1Click
   end
   object MainMenu1: TMainMenu

@@ -3,6 +3,8 @@ object cardForm: TcardForm
   Top = 20
   Width = 819
   Height = 713
+  HorzScrollBar.Position = 40
+  VertScrollBar.Position = 294
   Caption = 'cardForm'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -19,15 +21,15 @@ object cardForm: TcardForm
   PixelsPerInch = 96
   TextHeight = 13
   object Image1: TImage
-    Left = 320
-    Top = 304
+    Left = 280
+    Top = 10
     Width = 105
     Height = 105
     Stretch = True
   end
   object Label1: TLabel
-    Left = 288
-    Top = 0
+    Left = 248
+    Top = -294
     Width = 64
     Height = 16
     Caption = #8470' '#1079#1072#1082#1072#1079#1072
@@ -39,8 +41,8 @@ object cardForm: TcardForm
     ParentFont = False
   end
   object Label2: TLabel
-    Left = 592
-    Top = 0
+    Left = 552
+    Top = -294
     Width = 68
     Height = 16
     Caption = #1052#1077#1085#1077#1076#1078#1077#1088
@@ -52,8 +54,8 @@ object cardForm: TcardForm
     ParentFont = False
   end
   object Label3: TLabel
-    Left = 56
-    Top = 40
+    Left = 16
+    Top = -254
     Width = 62
     Height = 16
     Caption = #1079#1072#1082#1072#1079#1095#1080#1082
@@ -65,8 +67,8 @@ object cardForm: TcardForm
     ParentFont = False
   end
   object Label4: TLabel
-    Left = 72
-    Top = 88
+    Left = 32
+    Top = -206
     Width = 49
     Height = 16
     Caption = #1084#1072#1096#1088#1091#1090
@@ -78,8 +80,8 @@ object cardForm: TcardForm
     ParentFont = False
   end
   object Label5: TLabel
-    Left = 16
-    Top = 112
+    Left = -24
+    Top = -182
     Width = 103
     Height = 16
     Caption = #1072#1076#1088#1077#1089' '#1087#1086#1075#1088#1091#1079#1082#1080
@@ -91,8 +93,8 @@ object cardForm: TcardForm
     ParentFont = False
   end
   object Label6: TLabel
-    Left = 24
-    Top = 168
+    Left = -16
+    Top = -126
     Width = 95
     Height = 16
     Caption = #1076#1072#1090#1072' '#1087#1086#1075#1088#1091#1079#1082#1080
@@ -104,8 +106,8 @@ object cardForm: TcardForm
     ParentFont = False
   end
   object Label7: TLabel
-    Left = 16
-    Top = 192
+    Left = -24
+    Top = -102
     Width = 104
     Height = 16
     Caption = #1074#1088#1077#1084#1103' '#1087#1086#1075#1088#1091#1079#1082#1080
@@ -117,8 +119,8 @@ object cardForm: TcardForm
     ParentFont = False
   end
   object Label8: TLabel
-    Left = 8
-    Top = 216
+    Left = -32
+    Top = -78
     Width = 111
     Height = 16
     Caption = #1082#1086#1085#1090#1072#1082#1090#1085#1086#1077' '#1083#1080#1094#1086
@@ -130,8 +132,8 @@ object cardForm: TcardForm
     ParentFont = False
   end
   object Label9: TLabel
-    Left = 88
-    Top = 272
+    Left = 48
+    Top = -22
     Width = 30
     Height = 16
     Caption = #1075#1088#1091#1079
@@ -143,8 +145,8 @@ object cardForm: TcardForm
     ParentFont = False
   end
   object Label10: TLabel
-    Left = 56
-    Top = 296
+    Left = 16
+    Top = 2
     Width = 64
     Height = 16
     Caption = #1074#1077#1089' '#1075#1088#1091#1079#1072
@@ -156,8 +158,8 @@ object cardForm: TcardForm
     ParentFont = False
   end
   object Label11: TLabel
-    Left = -24
-    Top = 320
+    Left = -64
+    Top = 26
     Width = 149
     Height = 16
     Caption = #1090#1088#1077#1073#1091#1077#1084#1099#1081' '#1087#1086#1076#1074#1080#1078#1085#1086#1081
@@ -169,8 +171,8 @@ object cardForm: TcardForm
     ParentFont = False
   end
   object Label12: TLabel
-    Left = 16
-    Top = 344
+    Left = -24
+    Top = 50
     Width = 105
     Height = 16
     Caption = #1086#1089#1086#1073#1099#1077' '#1091#1089#1083#1086#1074#1080#1103
@@ -182,8 +184,8 @@ object cardForm: TcardForm
     ParentFont = False
   end
   object Label13: TLabel
-    Left = 16
-    Top = 400
+    Left = -24
+    Top = 106
     Width = 104
     Height = 16
     Caption = #1072#1076#1088#1077#1089' '#1074#1099#1075#1088#1091#1079#1082#1080
@@ -195,8 +197,8 @@ object cardForm: TcardForm
     ParentFont = False
   end
   object Label14: TLabel
-    Left = 24
-    Top = 456
+    Left = -16
+    Top = 162
     Width = 96
     Height = 16
     Caption = #1076#1072#1090#1072' '#1074#1099#1075#1088#1091#1079#1082#1080
@@ -208,8 +210,8 @@ object cardForm: TcardForm
     ParentFont = False
   end
   object Label15: TLabel
-    Left = 16
-    Top = 480
+    Left = -24
+    Top = 186
     Width = 106
     Height = 16
     Caption = #1074#1088#1077#1084#1103' '#1087#1088#1080#1073#1099#1090#1080#1103
@@ -221,8 +223,8 @@ object cardForm: TcardForm
     ParentFont = False
   end
   object Label16: TLabel
-    Left = 8
-    Top = 504
+    Left = -32
+    Top = 210
     Width = 111
     Height = 16
     Caption = #1082#1086#1085#1090#1072#1082#1090#1085#1086#1077' '#1083#1080#1094#1086
@@ -234,8 +236,8 @@ object cardForm: TcardForm
     ParentFont = False
   end
   object Label17: TLabel
-    Left = 16
-    Top = 560
+    Left = -24
+    Top = 266
     Width = 103
     Height = 16
     Caption = #1089#1090#1072#1074#1082#1072' '#1041#1056#1059#1058#1058#1054
@@ -247,8 +249,8 @@ object cardForm: TcardForm
     ParentFont = False
   end
   object Label18: TLabel
-    Left = 24
-    Top = 584
+    Left = -16
+    Top = 290
     Width = 95
     Height = 16
     Caption = #1092#1086#1088#1084#1072' '#1086#1087#1083#1072#1090#1099
@@ -260,8 +262,8 @@ object cardForm: TcardForm
     ParentFont = False
   end
   object Label19: TLabel
-    Left = 64
-    Top = 608
+    Left = 24
+    Top = 314
     Width = 47
     Height = 16
     Caption = #1087#1086#1090#1077#1088#1080
@@ -273,8 +275,8 @@ object cardForm: TcardForm
     ParentFont = False
   end
   object Label20: TLabel
-    Left = 24
-    Top = 632
+    Left = -16
+    Top = 338
     Width = 97
     Height = 16
     Caption = #1089#1090#1072#1074#1082#1072' '#1053#1045#1058#1058#1054
@@ -286,8 +288,8 @@ object cardForm: TcardForm
     ParentFont = False
   end
   object Label21: TLabel
-    Left = 400
-    Top = 40
+    Left = 360
+    Top = -254
     Width = 79
     Height = 16
     Caption = #1087#1077#1088#1077#1074#1086#1079#1095#1080#1082
@@ -299,8 +301,8 @@ object cardForm: TcardForm
     ParentFont = False
   end
   object Label22: TLabel
-    Left = 408
-    Top = 88
+    Left = 368
+    Top = -206
     Width = 62
     Height = 16
     Caption = #1074#1086#1076#1080#1090#1077#1083#1100
@@ -312,8 +314,8 @@ object cardForm: TcardForm
     ParentFont = False
   end
   object Label23: TLabel
-    Left = 416
-    Top = 112
+    Left = 376
+    Top = -182
     Width = 58
     Height = 16
     Caption = #1090#1077#1083#1077#1092#1086#1085
@@ -325,8 +327,8 @@ object cardForm: TcardForm
     ParentFont = False
   end
   object Label24: TLabel
-    Left = 456
-    Top = 160
+    Left = 416
+    Top = -134
     Width = 21
     Height = 16
     Caption = #1072'/'#1084
@@ -338,8 +340,8 @@ object cardForm: TcardForm
     ParentFont = False
   end
   object Label25: TLabel
-    Left = 424
-    Top = 184
+    Left = 384
+    Top = -110
     Width = 45
     Height = 16
     Caption = #1089#1090#1072#1074#1082#1072
@@ -351,8 +353,8 @@ object cardForm: TcardForm
     ParentFont = False
   end
   object Label26: TLabel
-    Left = 384
-    Top = 208
+    Left = 344
+    Top = -86
     Width = 95
     Height = 16
     Caption = #1092#1086#1088#1084#1072' '#1086#1087#1083#1072#1090#1099
@@ -364,8 +366,8 @@ object cardForm: TcardForm
     ParentFont = False
   end
   object Label27: TLabel
-    Left = 392
-    Top = 232
+    Left = 352
+    Top = -62
     Width = 81
     Height = 16
     Caption = #1089#1088#1086#1082' '#1086#1087#1083#1072#1090#1099
@@ -377,8 +379,8 @@ object cardForm: TcardForm
     ParentFont = False
   end
   object Label29: TLabel
-    Left = 400
-    Top = 424
+    Left = 360
+    Top = 130
     Width = 95
     Height = 16
     Caption = #1058#1058#1053' '#1087#1086#1083#1091#1095#1077#1085#1072
@@ -390,8 +392,8 @@ object cardForm: TcardForm
     ParentFont = False
   end
   object Label30: TLabel
-    Left = 368
-    Top = 552
+    Left = 328
+    Top = 258
     Width = 138
     Height = 16
     Caption = #1058#1058#1053', '#1089#1095#1077#1090' '#1086#1090#1087#1088#1072#1074#1083#1077#1085
@@ -403,8 +405,8 @@ object cardForm: TcardForm
     ParentFont = False
   end
   object Label31: TLabel
-    Left = 128
-    Top = 712
+    Left = 88
+    Top = 418
     Width = 177
     Height = 16
     Caption = #1087#1086#1089#1090#1091#1087#1083#1077#1085#1080#1077' '#1086#1090' '#1079#1072#1082#1072#1079#1095#1080#1082#1072
@@ -416,8 +418,8 @@ object cardForm: TcardForm
     ParentFont = False
   end
   object Label34: TLabel
-    Left = 96
-    Top = 824
+    Left = 56
+    Top = 530
     Width = 30
     Height = 16
     Caption = #1076#1086#1083#1075
@@ -429,8 +431,8 @@ object cardForm: TcardForm
     ParentFont = False
   end
   object Label35: TLabel
-    Left = 480
-    Top = 712
+    Left = 440
+    Top = 418
     Width = 154
     Height = 16
     Caption = #1086#1087#1083#1072#1095#1077#1085#1086' '#1087#1077#1088#1077#1074#1086#1079#1095#1080#1082#1091
@@ -442,8 +444,8 @@ object cardForm: TcardForm
     ParentFont = False
   end
   object Label38: TLabel
-    Left = 448
-    Top = 824
+    Left = 408
+    Top = 530
     Width = 30
     Height = 16
     Caption = #1076#1086#1083#1075
@@ -455,8 +457,8 @@ object cardForm: TcardForm
     ParentFont = False
   end
   object Label39: TLabel
-    Left = 408
-    Top = 888
+    Left = 368
+    Top = 594
     Width = 80
     Height = 16
     Caption = #1085#1072#1096' '#1086#1089#1090#1072#1090#1086#1082
@@ -468,8 +470,8 @@ object cardForm: TcardForm
     ParentFont = False
   end
   object Label40: TLabel
-    Left = 64
-    Top = 912
+    Left = 24
+    Top = 618
     Width = 81
     Height = 16
     Caption = #1087#1088#1080#1084#1077#1095#1072#1085#1080#1077
@@ -481,8 +483,8 @@ object cardForm: TcardForm
     ParentFont = False
   end
   object Label41: TLabel
-    Left = 480
-    Top = 936
+    Left = 440
+    Top = 642
     Width = 41
     Height = 16
     Caption = 'Label1'
@@ -494,8 +496,8 @@ object cardForm: TcardForm
     ParentFont = False
   end
   object Label28: TLabel
-    Left = 432
-    Top = 402
+    Left = 392
+    Top = 108
     Width = 48
     Height = 16
     Caption = 'Label28'
@@ -507,8 +509,8 @@ object cardForm: TcardForm
     ParentFont = False
   end
   object Label33: TLabel
-    Left = 57
-    Top = 64
+    Left = 17
+    Top = -230
     Width = 65
     Height = 16
     Caption = #1082#1086#1076' '#1074' '#1040#1058#1048
@@ -520,8 +522,8 @@ object cardForm: TcardForm
     ParentFont = False
   end
   object Label36: TLabel
-    Left = 408
-    Top = 64
+    Left = 368
+    Top = -230
     Width = 65
     Height = 16
     Caption = #1082#1086#1076' '#1074' '#1040#1058#1048
@@ -533,8 +535,8 @@ object cardForm: TcardForm
     ParentFont = False
   end
   object Label32: TLabel
-    Left = 416
-    Top = 136
+    Left = 376
+    Top = -158
     Width = 58
     Height = 16
     Caption = #1090#1077#1083#1077#1092#1086#1085
@@ -547,8 +549,8 @@ object cardForm: TcardForm
   end
   object ComboBox1: TComboBox
     Tag = 4
-    Left = 128
-    Top = 40
+    Left = 88
+    Top = -254
     Width = 161
     Height = 21
     Style = csSimple
@@ -568,8 +570,8 @@ object cardForm: TcardForm
     OnKeyPress = BlockPress
   end
   object Edit1: TEdit
-    Left = 128
-    Top = 64
+    Left = 88
+    Top = -230
     Width = 185
     Height = 24
     Color = clWhite
@@ -588,8 +590,8 @@ object cardForm: TcardForm
   end
   object Memo1: TMemo
     Tag = 37
-    Left = 128
-    Top = 112
+    Left = 88
+    Top = -182
     Width = 185
     Height = 49
     Color = clWhite
@@ -606,8 +608,8 @@ object cardForm: TcardForm
   end
   object DateTimePicker1: TDateTimePicker
     Tag = 16
-    Left = 128
-    Top = 168
+    Left = 88
+    Top = -126
     Width = 185
     Height = 24
     Date = 42150.793398819440000000
@@ -624,8 +626,8 @@ object cardForm: TcardForm
   end
   object Edit2: TEdit
     Tag = 5
-    Left = 128
-    Top = 88
+    Left = 88
+    Top = -206
     Width = 185
     Height = 24
     Color = clWhite
@@ -641,8 +643,8 @@ object cardForm: TcardForm
   end
   object Memo2: TMemo
     Tag = 39
-    Left = 128
-    Top = 216
+    Left = 88
+    Top = -78
     Width = 185
     Height = 49
     Color = clWhite
@@ -659,8 +661,8 @@ object cardForm: TcardForm
   end
   object Edit3: TEdit
     Tag = 38
-    Left = 128
-    Top = 192
+    Left = 88
+    Top = -102
     Width = 185
     Height = 24
     Color = clWhite
@@ -676,8 +678,8 @@ object cardForm: TcardForm
   end
   object Edit4: TEdit
     Tag = 6
-    Left = 128
-    Top = 272
+    Left = 88
+    Top = -22
     Width = 185
     Height = 24
     Color = clWhite
@@ -693,8 +695,8 @@ object cardForm: TcardForm
   end
   object Edit5: TEdit
     Tag = 40
-    Left = 128
-    Top = 296
+    Left = 88
+    Top = 2
     Width = 185
     Height = 24
     Color = clWhite
@@ -710,8 +712,8 @@ object cardForm: TcardForm
   end
   object Memo3: TMemo
     Tag = 42
-    Left = 128
-    Top = 344
+    Left = 88
+    Top = 50
     Width = 185
     Height = 49
     Color = clWhite
@@ -728,8 +730,8 @@ object cardForm: TcardForm
   end
   object Edit6: TEdit
     Tag = 41
-    Left = 128
-    Top = 320
+    Left = 88
+    Top = 26
     Width = 185
     Height = 24
     Color = clWhite
@@ -745,8 +747,8 @@ object cardForm: TcardForm
   end
   object DateTimePicker2: TDateTimePicker
     Tag = 17
-    Left = 128
-    Top = 456
+    Left = 88
+    Top = 162
     Width = 185
     Height = 24
     Date = 42150.793398819440000000
@@ -763,8 +765,8 @@ object cardForm: TcardForm
   end
   object Memo4: TMemo
     Tag = 45
-    Left = 128
-    Top = 504
+    Left = 88
+    Top = 210
     Width = 185
     Height = 49
     Color = clWhite
@@ -781,8 +783,8 @@ object cardForm: TcardForm
   end
   object Edit8: TEdit
     Tag = 44
-    Left = 128
-    Top = 480
+    Left = 88
+    Top = 186
     Width = 185
     Height = 24
     Color = clWhite
@@ -798,8 +800,8 @@ object cardForm: TcardForm
   end
   object ComboBox2: TComboBox
     Tag = 8
-    Left = 128
-    Top = 584
+    Left = 88
+    Top = 290
     Width = 185
     Height = 24
     Color = clWhite
@@ -818,8 +820,8 @@ object cardForm: TcardForm
   end
   object Edit9: TEdit
     Tag = 7
-    Left = 128
-    Top = 560
+    Left = 88
+    Top = 266
     Width = 185
     Height = 24
     Color = clWhite
@@ -837,8 +839,8 @@ object cardForm: TcardForm
   end
   object Edit10: TEdit
     Tag = 9
-    Left = 128
-    Top = 608
+    Left = 88
+    Top = 314
     Width = 185
     Height = 24
     Color = clWhite
@@ -856,8 +858,8 @@ object cardForm: TcardForm
   end
   object DateTimePicker3: TDateTimePicker
     Tag = 48
-    Left = 480
-    Top = 400
+    Left = 440
+    Top = 106
     Width = 185
     Height = 24
     Date = 42150.793398819440000000
@@ -874,8 +876,8 @@ object cardForm: TcardForm
   end
   object Edit11: TEdit
     Tag = 10
-    Left = 128
-    Top = 632
+    Left = 88
+    Top = 338
     Width = 185
     Height = 24
     Color = clWhite
@@ -892,8 +894,8 @@ object cardForm: TcardForm
     OnKeyPress = BlockPress
   end
   object Edit12: TEdit
-    Left = 480
-    Top = 64
+    Left = 440
+    Top = -230
     Width = 185
     Height = 24
     Color = clWhite
@@ -911,8 +913,8 @@ object cardForm: TcardForm
   end
   object ComboBox3: TComboBox
     Tag = 11
-    Left = 480
-    Top = 40
+    Left = 440
+    Top = -254
     Width = 161
     Height = 21
     Style = csSimple
@@ -930,8 +932,8 @@ object cardForm: TcardForm
   end
   object ComboBox4: TComboBox
     Tag = 15
-    Left = 480
-    Top = 88
+    Left = 440
+    Top = -206
     Width = 161
     Height = 21
     Style = csSimple
@@ -948,8 +950,8 @@ object cardForm: TcardForm
     OnChange = BoxChange
   end
   object Edit13: TEdit
-    Left = 480
-    Top = 112
+    Left = 440
+    Top = -182
     Width = 185
     Height = 24
     Color = clWhite
@@ -966,8 +968,8 @@ object cardForm: TcardForm
     OnKeyPress = BlockPress
   end
   object Edit14: TEdit
-    Left = 480
-    Top = 160
+    Left = 440
+    Top = -134
     Width = 185
     Height = 24
     Color = clWhite
@@ -985,8 +987,8 @@ object cardForm: TcardForm
   end
   object Edit15: TEdit
     Tag = 12
-    Left = 480
-    Top = 184
+    Left = 440
+    Top = -110
     Width = 185
     Height = 24
     Color = clWhite
@@ -1002,8 +1004,8 @@ object cardForm: TcardForm
   end
   object ComboBox5: TComboBox
     Tag = 13
-    Left = 480
-    Top = 208
+    Left = 440
+    Top = -86
     Width = 185
     Height = 24
     Color = clWhite
@@ -1022,8 +1024,8 @@ object cardForm: TcardForm
   end
   object Edit16: TEdit
     Tag = 46
-    Left = 480
-    Top = 232
+    Left = 440
+    Top = -62
     Width = 185
     Height = 24
     Color = clWhite
@@ -1039,8 +1041,8 @@ object cardForm: TcardForm
   end
   object ComboBox6: TComboBox
     Tag = 47
-    Left = 480
-    Top = 296
+    Left = 440
+    Top = 2
     Width = 185
     Height = 24
     Color = clWhite
@@ -1056,8 +1058,8 @@ object cardForm: TcardForm
     OnChange = BoxChange
   end
   object Button1: TButton
-    Left = 480
-    Top = 320
+    Left = 440
+    Top = 26
     Width = 185
     Height = 25
     Caption = 'Button1'
@@ -1071,8 +1073,8 @@ object cardForm: TcardForm
   end
   object DateTimePicker4: TDateTimePicker
     Tag = 49
-    Left = 480
-    Top = 424
+    Left = 440
+    Top = 130
     Width = 185
     Height = 24
     Date = 42150.806473715270000000
@@ -1088,8 +1090,8 @@ object cardForm: TcardForm
   end
   object DateTimePicker5: TDateTimePicker
     Tag = 50
-    Left = 480
-    Top = 552
+    Left = 440
+    Top = 258
     Width = 185
     Height = 24
     Date = 42150.806492939820000000
@@ -1105,8 +1107,8 @@ object cardForm: TcardForm
     OnChange = DateChange
   end
   object Button2: TButton
-    Left = 480
-    Top = 448
+    Left = 440
+    Top = 154
     Width = 185
     Height = 41
     Caption = 'Button2'
@@ -1119,8 +1121,8 @@ object cardForm: TcardForm
     TabOrder = 53
   end
   object Button3: TButton
-    Left = 480
-    Top = 488
+    Left = 440
+    Top = 194
     Width = 185
     Height = 33
     Caption = 'Button3'
@@ -1133,8 +1135,8 @@ object cardForm: TcardForm
     TabOrder = 54
   end
   object Button4: TButton
-    Left = 480
-    Top = 520
+    Left = 440
+    Top = 226
     Width = 185
     Height = 33
     Caption = 'Button4'
@@ -1148,8 +1150,8 @@ object cardForm: TcardForm
   end
   object DateTimePicker6: TDateTimePicker
     Tag = 22
-    Left = 8
-    Top = 728
+    Left = -32
+    Top = 434
     Width = 113
     Height = 24
     Date = 42150.806801145830000000
@@ -1167,8 +1169,8 @@ object cardForm: TcardForm
   end
   object Edit17: TEdit
     Tag = 21
-    Left = 128
-    Top = 728
+    Left = 88
+    Top = 434
     Width = 185
     Height = 24
     Color = clWhite
@@ -1184,8 +1186,8 @@ object cardForm: TcardForm
   end
   object Edit18: TEdit
     Tag = 23
-    Left = 128
-    Top = 752
+    Left = 88
+    Top = 458
     Width = 185
     Height = 24
     Color = clWhite
@@ -1201,8 +1203,8 @@ object cardForm: TcardForm
   end
   object Edit19: TEdit
     Tag = 25
-    Left = 128
-    Top = 776
+    Left = 88
+    Top = 482
     Width = 185
     Height = 24
     Color = clWhite
@@ -1218,8 +1220,8 @@ object cardForm: TcardForm
   end
   object Edit20: TEdit
     Tag = 27
-    Left = 128
-    Top = 800
+    Left = 88
+    Top = 506
     Width = 185
     Height = 24
     Color = clWhite
@@ -1235,8 +1237,8 @@ object cardForm: TcardForm
   end
   object Edit21: TEdit
     Tag = 52
-    Left = 128
-    Top = 824
+    Left = 88
+    Top = 530
     Width = 185
     Height = 24
     Color = clWhite
@@ -1254,8 +1256,8 @@ object cardForm: TcardForm
   end
   object Edit22: TEdit
     Tag = 29
-    Left = 480
-    Top = 728
+    Left = 440
+    Top = 434
     Width = 185
     Height = 24
     Color = clWhite
@@ -1271,8 +1273,8 @@ object cardForm: TcardForm
   end
   object Edit23: TEdit
     Tag = 31
-    Left = 480
-    Top = 752
+    Left = 440
+    Top = 458
     Width = 185
     Height = 24
     Color = clWhite
@@ -1288,8 +1290,8 @@ object cardForm: TcardForm
   end
   object Edit24: TEdit
     Tag = 33
-    Left = 480
-    Top = 776
+    Left = 440
+    Top = 482
     Width = 185
     Height = 24
     Color = clWhite
@@ -1304,8 +1306,8 @@ object cardForm: TcardForm
     OnChange = EditChange
   end
   object Button5: TButton
-    Left = 688
-    Top = 877
+    Left = 648
+    Top = 583
     Width = 75
     Height = 73
     Caption = 'Button5'
@@ -1320,8 +1322,8 @@ object cardForm: TcardForm
   end
   object Edit25: TEdit
     Tag = 35
-    Left = 480
-    Top = 797
+    Left = 440
+    Top = 503
     Width = 185
     Height = 24
     Color = clWhite
@@ -1337,8 +1339,8 @@ object cardForm: TcardForm
   end
   object Edit26: TEdit
     Tag = 53
-    Left = 480
-    Top = 821
+    Left = 440
+    Top = 527
     Width = 185
     Height = 24
     Color = clWhite
@@ -1356,8 +1358,8 @@ object cardForm: TcardForm
   end
   object Edit27: TEdit
     Tag = 14
-    Left = 480
-    Top = 885
+    Left = 440
+    Top = 591
     Width = 185
     Height = 24
     Color = clWhite
@@ -1375,8 +1377,8 @@ object cardForm: TcardForm
   end
   object Edit28: TEdit
     Tag = 20
-    Left = 128
-    Top = 909
+    Left = 88
+    Top = 615
     Width = 537
     Height = 24
     Color = clWhite
@@ -1393,8 +1395,8 @@ object cardForm: TcardForm
   end
   object DateTimePicker7: TDateTimePicker
     Tag = 24
-    Left = 8
-    Top = 749
+    Left = -32
+    Top = 455
     Width = 113
     Height = 24
     Date = 42156.723424722220000000
@@ -1412,8 +1414,8 @@ object cardForm: TcardForm
   end
   object DateTimePicker8: TDateTimePicker
     Tag = 26
-    Left = 8
-    Top = 773
+    Left = -32
+    Top = 479
     Width = 113
     Height = 24
     Date = 42156.723490439810000000
@@ -1431,8 +1433,8 @@ object cardForm: TcardForm
   end
   object DateTimePicker9: TDateTimePicker
     Tag = 28
-    Left = 8
-    Top = 797
+    Left = -32
+    Top = 503
     Width = 113
     Height = 24
     Date = 42156.723512523150000000
@@ -1450,8 +1452,8 @@ object cardForm: TcardForm
   end
   object DateTimePicker10: TDateTimePicker
     Tag = 30
-    Left = 360
-    Top = 725
+    Left = 320
+    Top = 431
     Width = 113
     Height = 24
     Date = 42156.723533923610000000
@@ -1469,8 +1471,8 @@ object cardForm: TcardForm
   end
   object DateTimePicker11: TDateTimePicker
     Tag = 32
-    Left = 360
-    Top = 749
+    Left = 320
+    Top = 455
     Width = 113
     Height = 24
     Date = 42156.723554282410000000
@@ -1488,8 +1490,8 @@ object cardForm: TcardForm
   end
   object DateTimePicker12: TDateTimePicker
     Tag = 34
-    Left = 360
-    Top = 773
+    Left = 320
+    Top = 479
     Width = 113
     Height = 24
     Date = 42156.723577696760000000
@@ -1507,8 +1509,8 @@ object cardForm: TcardForm
   end
   object DateTimePicker13: TDateTimePicker
     Tag = 36
-    Left = 360
-    Top = 797
+    Left = 320
+    Top = 503
     Width = 113
     Height = 24
     Date = 42156.723599027780000000
@@ -1526,8 +1528,8 @@ object cardForm: TcardForm
   end
   object DateTimePicker14: TDateTimePicker
     Tag = 2
-    Left = 8
-    Top = 5
+    Left = -32
+    Top = -289
     Width = 89
     Height = 24
     Date = 42156.723624641210000000
@@ -1544,8 +1546,8 @@ object cardForm: TcardForm
   end
   object Edit29: TEdit
     Tag = 1
-    Left = 360
-    Top = 5
+    Left = 320
+    Top = -289
     Width = 121
     Height = 24
     Color = clWhite
@@ -1561,8 +1563,8 @@ object cardForm: TcardForm
   end
   object Edit30: TEdit
     Tag = 3
-    Left = 664
-    Top = 5
+    Left = 624
+    Top = -289
     Width = 121
     Height = 24
     Color = clWhite
@@ -1577,8 +1579,8 @@ object cardForm: TcardForm
     OnChange = EditChange
   end
   object Button6: TButton
-    Left = 288
-    Top = 40
+    Left = 248
+    Top = -254
     Width = 25
     Height = 25
     Caption = '+'
@@ -1592,8 +1594,8 @@ object cardForm: TcardForm
     OnClick = ButtonPlusClick
   end
   object Button7: TButton
-    Left = 640
-    Top = 40
+    Left = 600
+    Top = -254
     Width = 25
     Height = 25
     Caption = '+'
@@ -1607,8 +1609,8 @@ object cardForm: TcardForm
     OnClick = ButtonPlusClick
   end
   object Button8: TButton
-    Left = 640
-    Top = 88
+    Left = 600
+    Top = -206
     Width = 25
     Height = 25
     Caption = '+'
@@ -1623,8 +1625,8 @@ object cardForm: TcardForm
     OnEnter = Button8Enter
   end
   object Edit31: TEdit
-    Left = 480
-    Top = 136
+    Left = 440
+    Top = -158
     Width = 185
     Height = 24
     Color = clWhite
@@ -1642,8 +1644,8 @@ object cardForm: TcardForm
   end
   object CheckBox1: TCheckBox
     Tag = 1
-    Left = 672
-    Top = 401
+    Left = 632
+    Top = 107
     Width = 17
     Height = 17
     Font.Charset = DEFAULT_CHARSET
@@ -1657,8 +1659,8 @@ object cardForm: TcardForm
   end
   object CheckBox2: TCheckBox
     Tag = 2
-    Left = 672
-    Top = 425
+    Left = 632
+    Top = 131
     Width = 17
     Height = 17
     Font.Charset = DEFAULT_CHARSET
@@ -1672,8 +1674,8 @@ object cardForm: TcardForm
   end
   object CheckBox3: TCheckBox
     Tag = 3
-    Left = 672
-    Top = 553
+    Left = 632
+    Top = 259
     Width = 17
     Height = 17
     Font.Charset = DEFAULT_CHARSET
@@ -1686,8 +1688,8 @@ object cardForm: TcardForm
     OnClick = CheckBoxClick
   end
   object Memo5: TMemo
-    Left = 696
-    Top = 40
+    Left = 656
+    Top = -254
     Width = 185
     Height = 345
     Font.Charset = DEFAULT_CHARSET
@@ -1699,11 +1701,10 @@ object cardForm: TcardForm
       'Memo5')
     ParentFont = False
     TabOrder = 65
-    Visible = False
   end
   object Button9: TButton
-    Left = 720
-    Top = 400
+    Left = 680
+    Top = 106
     Width = 75
     Height = 25
     Caption = 'Button9'
@@ -1714,13 +1715,12 @@ object cardForm: TcardForm
     Font.Style = []
     ParentFont = False
     TabOrder = 66
-    Visible = False
     OnClick = Button9Click
   end
   object Memo6: TMemo
     Tag = 43
-    Left = 128
-    Top = 400
+    Left = 88
+    Top = 106
     Width = 185
     Height = 49
     Color = clWhite
@@ -1737,8 +1737,8 @@ object cardForm: TcardForm
   end
   object Edit7: TEdit
     Tag = 51
-    Left = 160
-    Top = 8
+    Left = 120
+    Top = -286
     Width = 121
     Height = 21
     TabOrder = 68
