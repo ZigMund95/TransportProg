@@ -77,7 +77,6 @@ end;
 
 procedure TlistForm.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-button1.Visible:= false;
 if cardForm.Visible then
   cardForm.Enabled := true
 else
@@ -132,7 +131,7 @@ end;
 
 procedure TlistForm.GridSelectCell(Sender: TObject; ACol, ARow: Integer;
   var CanSelect: Boolean);
-begin RowSelected2 := ARow; end;
+begin RowSelected := ARow; end;
 
 procedure TlistForm.GridDblClick(Sender: TObject);
 var s: string;
@@ -143,14 +142,14 @@ if Grid.ColCount = GridD.ColCount then
   begin
     driversAddForm.Visible := true;
     for i := 0 to 14 do
-      Unit1.DriveInf[i] := Grid.Cells[i+1,RowSelected2];
+      Unit1.DriveInf[i] := Grid.Cells[i+1,RowSelected];
     Unit4.loadDInfPage;
   end
 else
   begin
     counterAddForm.Visible := true;
     for i := 0 to 30 do
-      Unit1.CounterInf[i] := Grid.Cells[i+1,RowSelected2];
+      Unit1.CounterInf[i] := Grid.Cells[i+1,RowSelected];
     Unit6.loadCInfPage;
   end
 end;
@@ -202,7 +201,7 @@ procedure TlistForm.N1Click(Sender: TObject);
 var i: integer;
 begin
 listForm.Enabled := false;
-RowSelected2 := -1;
+RowSelected := -1;
 if Grid.ColCount = GridD.ColCount then
   begin
     driversAddForm.Visible := true;
@@ -221,15 +220,15 @@ procedure TlistForm.Button1Click(Sender: TObject);
 begin
 with SenderBox as TComboBox do
 begin
-Text := Grid.Cells[2,RowSelected2];
+Text := Grid.Cells[2,RowSelected];
 case Tag of
-4: cardForm.Edit1.Text := Grid.Cells[3,RowSelected2];
-11: cardForm.Edit12.Text := Grid.Cells[3,RowSelected2];
+4: cardForm.Edit1.Text := Grid.Cells[3,RowSelected];
+11: cardForm.Edit12.Text := Grid.Cells[3,RowSelected];
 15:
 begin
-  cardForm.Edit13.Text := Grid.Cells[3,RowSelected2];
-  cardForm.Edit31.Text := Grid.Cells[4,RowSelected2];
-  cardForm.Edit14.Text := Grid.Cells[11,RowSelected2];
+  cardForm.Edit13.Text := Grid.Cells[3,RowSelected];
+  cardForm.Edit31.Text := Grid.Cells[4,RowSelected];
+  cardForm.Edit14.Text := Grid.Cells[11,RowSelected];
 end;
 end;
 cardForm.Enabled := true;

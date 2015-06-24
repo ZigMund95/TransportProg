@@ -475,6 +475,7 @@ object driversAddForm: TdriversAddForm
     ParentFont = False
     TabOrder = 7
     OnClick = DateTimePicker1Click
+    OnChange = DateTimePicker1Change
   end
   object ComboBox1: TComboBox
     Tag = 9
@@ -545,5 +546,6 @@ object driversAddForm: TdriversAddForm
     Height = 25
     Caption = 'Button2'
     TabOrder = 20
+    OnClick = Button2Click
   end
 end

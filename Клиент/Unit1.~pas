@@ -40,7 +40,6 @@ type
     Button2: TButton;
     Button1: TButton;
     Memo1: TMemo;
-    Image1: TImage;
     procedure FormCreate(Sender: TObject);
     procedure FormResize(Sender: TObject);
     procedure N1Click(Sender: TObject);
@@ -220,11 +219,6 @@ procedure TMainForm.FormCreate(Sender: TObject);
 var i:integer;
     s: string;
 begin
-image1.Picture.LoadFromFile('bg_1.png');
-image1.Left := 0;
-image1.Top := 0;
-image1.Width := mainForm.ClientWidth;
-image1.Height := mainForm.ClientHeight;
 
 for i := 1 to 60 do Unit1.FieldVision[i] := true;
 //подключение к серверу

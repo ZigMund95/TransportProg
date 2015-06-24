@@ -232,7 +232,7 @@ object counterAddForm: TcounterAddForm
     TabOrder = 1
     Text = 'Edit2'
     OnChange = EditChange
-    OnKeyPress = EditNumKeyPress
+    OnKeyPress = Edit2KeyPress
   end
   object Edit3: TEdit
     Tag = 3
@@ -243,7 +243,6 @@ object counterAddForm: TcounterAddForm
     TabOrder = 2
     Text = 'Edit3'
     OnChange = EditChange
-    OnKeyPress = EditNumKeyPress
   end
   object Edit4: TEdit
     Tag = 4
@@ -254,7 +253,6 @@ object counterAddForm: TcounterAddForm
     TabOrder = 3
     Text = 'Edit4'
     OnChange = EditChange
-    OnKeyPress = EditNumKeyPress
   end
   object Edit5: TEdit
     Tag = 5
@@ -265,7 +263,6 @@ object counterAddForm: TcounterAddForm
     TabOrder = 4
     Text = 'Edit5'
     OnChange = EditChange
-    OnKeyPress = EditNumKeyPress
   end
   object Edit6: TEdit
     Tag = 6
@@ -416,7 +413,6 @@ object counterAddForm: TcounterAddForm
     TabOrder = 23
     Text = 'Edit5'
     OnChange = EditChange
-    OnKeyPress = EditNumKeyPress
   end
   object Edit21: TEdit
     Tag = 24
@@ -427,7 +423,6 @@ object counterAddForm: TcounterAddForm
     TabOrder = 24
     Text = 'Edit1'
     OnChange = EditChange
-    OnKeyPress = EditNumKeyPress
   end
   object Edit22: TEdit
     Tag = 28
@@ -438,7 +433,6 @@ object counterAddForm: TcounterAddForm
     TabOrder = 25
     Text = 'Edit2'
     OnChange = EditChange
-    OnKeyPress = EditNumKeyPress
   end
   object Edit23: TEdit
     Tag = 17

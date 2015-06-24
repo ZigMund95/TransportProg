@@ -200,7 +200,7 @@ procedure TcounterAddForm.Button1Click(Sender: TObject);
 var OutputM: string;
     i: integer;
 begin
-if RowSelected2 = -1 then
+if RowSelected = -1 then
   OutputM := '#cnew'
 else
   OutputM := '#crewrite';
@@ -210,7 +210,7 @@ for i := 0 to 30 do
 
 listForm.Enabled := true;
 mainForm.Client3.Socket.SendText(OutputM);
-if RowSelected2 = -1 then
+if RowSelected = -1 then
   begin
     listForm.GridC.RowCount := 2;
     mainForm.Client3.Socket.SendText('counters');
@@ -222,7 +222,7 @@ procedure TcounterAddForm.Edit34Click(Sender: TObject);
 var i: integer;
     OutputM: string;
 begin
-if RowSelected2 = -1 then
+if RowSelected = -1 then
   OutputM := '#cnew'
 else
   OutputM := '#crewrite';

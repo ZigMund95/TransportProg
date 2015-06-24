@@ -1,6 +1,6 @@
 object MainForm: TMainForm
-  Left = 368
-  Top = 250
+  Left = 402
+  Top = 182
   Width = 913
   Height = 478
   Caption = 'MainForm'
@@ -75,6 +75,15 @@ object MainForm: TMainForm
     Height = 25
     Caption = 'Button1'
     TabOrder = 3
+  end
+  object Memo1: TMemo
+    Left = 584
+    Top = 32
+    Width = 257
+    Height = 369
+    Lines.Strings = (
+      'Memo1')
+    TabOrder = 4
   end
   object MainMenu1: TMainMenu
     Left = 736

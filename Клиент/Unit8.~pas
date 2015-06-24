@@ -222,18 +222,14 @@ with SenderBox as TComboBox do
 begin
 Text := Grid.Cells[2,RowSelected];
 case Tag of
-4: cardForm.Edit1.Text := Grid.Cells[3,RowSelected];
-11: cardForm.Edit12.Text := Grid.Cells[3,RowSelected];
+4: cardForm.Edit1.
+11:
 15:
 begin
   cardForm.Edit13.Text := Grid.Cells[3,RowSelected];
   cardForm.Edit31.Text := Grid.Cells[4,RowSelected];
   cardForm.Edit14.Text := Grid.Cells[11,RowSelected];
-end;
-end;
-cardForm.Enabled := true;
-listForm.Close;
-end;
+end
 
 end;
 

@@ -83,7 +83,7 @@ type
     procedure EditNameKeyPress(Sender: TObject; var Key: Char);
     procedure EditNameKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
-    procedure EditNumKeyPress(Sender: TObject; var Key: Char);
+    procedure Edit2KeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
   public
@@ -238,7 +238,7 @@ procedure TcounterAddForm.EditNameKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin key := 0; end;
 
-procedure TcounterAddForm.EditNumKeyPress(Sender: TObject; var Key: Char);
+procedure TcounterAddForm.Edit2KeyPress(Sender: TObject; var Key: Char);
 begin
 if not(((key >= '0')and(key <= '9'))or(key =#8)) then
   key := #0;

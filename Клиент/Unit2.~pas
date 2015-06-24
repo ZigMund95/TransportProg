@@ -442,7 +442,7 @@ else
     listForm.Grid.ColCount := listForm.GridC.ColCount;
     listForm.Grid.RowCount := listForm.GridC.RowCount;
     loadGrid(listForm.GridC);
-    SenderEdit1 := Edit1;       
+    SenderEdit1 := Edit1;
     SenderEdit2 := Edit12;
   end;
 
