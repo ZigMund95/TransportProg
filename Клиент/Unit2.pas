@@ -366,7 +366,7 @@ begin
 cardForm.OnActivate(cardForm);
 if Edit11.Text = 'введите' then Exit;
 if DateTimePicker1.Date > DateTimePicker2.Date then Exit;
-if RowSelected = -1 then
+if RowSelected1 = -1 then
   begin
     OutputM := '#new';
     for i := 1 to 51 do
@@ -448,6 +448,7 @@ else
 
 cardForm.Enabled := false;
 listForm.Visible := true;
+listForm.Button1.Visible := true;
 
 {if Sender = Button8 then SenderBox := ComboBox1;
 if Sender = Button7 then SenderBox := ComboBox3;
@@ -645,19 +646,48 @@ begin with Sender as TEdit do if Text='' then Text := '0'; end;
 
 procedure TcardForm.Button9Click(Sender: TObject);
 var i: integer;
+    OutputM: string;
 begin
-//cardForm.BoxChange(cardForm.ComboBox2);
+cardForm.OnActivate(cardForm);
 memo5.Clear;
+if Edit11.Text = 'введите' then Exit;
+if DateTimePicker1.Date > DateTimePicker2.Date then Exit;
+if RowSelected1 = -1 then
+  begin
+    OutputM := '#new';
+    memo5.Lines.Add(OutputM);
     for i := 1 to 51 do
-    if (Unit2.EnabledField[i])or(i=2) then
-      memo5.Lines.Add(CardInf[i] + ';')
+    if Unit2.EnabledField[i] or (i = 2) then begin
+      OutputM := OutputM + CardInf[i] + ';'; memo5.Lines.Add(inttostr(i) + ' ' + cardInf[i]);   end
     else
-      case i of
-      18,19,22,24,26,28,30,32,34,36,48,49,50: memo5.Lines.Add('1.1.0001;');
-      21,23,25,27,29,31,33,35: memo5.Lines.Add('0;');
+      begin
+        case i of
+        //18,19,22,24,26,28,30,32,34,36,48,49,50: OutputM := OutputM + '1.1.0001;';
+        21,23,25,27,29,31,33,35: OutputM := OutputM + '0';
+        end;
+        OutputM := OutputM + ';';
+        memo5.Lines.Add(inttostr(i) + ' ;');
       end;
+  end
+else
+  begin
+   OutputM := '#rewrite';
+       memo5.Lines.Add(OutputM);
+    for i := 1 to 51 do
+      if Unit2.EnabledField[i] or (i = 2) then
+      OutputM := OutputM + CardInf[i] + ';'
+    else
+      begin
+        case i of
+        //18,19,22,24,26,28,30,32,34,36,48,49,50: OutputM := OutputM + '1.1.0001;';
+        21,23,25,27,29,31,33,35: OutputM := OutputM + '0';
+        end;
+        OutputM := OutputM + ';';
+      end;
+  end;
 
 
+//memo5.Lines.Add(OutputM);
 end;
 
 procedure TcardForm.EditNumberPress(Sender: TObject; var Key: Char);

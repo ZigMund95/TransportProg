@@ -39,7 +39,6 @@ type
     Client3: TClientSocket;
     Button2: TButton;
     Button1: TButton;
-    Memo1: TMemo;
     Image1: TImage;
     procedure FormCreate(Sender: TObject);
     procedure FormResize(Sender: TObject);
@@ -81,7 +80,7 @@ var
   DriveInf: array[0..14]of string;
   CounterInf: array[0..35]of string;
   Filter: array[1..35,0..1]of string;
-  FilterCol,RowSelected: integer;
+  FilterCol,RowSelected1, RowSelected2: integer;
   MousePos: integer;
   SenderGrid: TStringGrid;
   SelPosNow: integer;
@@ -271,7 +270,7 @@ ColumnWidthAlign(Sender);
 if (Grid1.Cells[1,Grid1.RowCount-2] = '')and(Grid1.RowCount > 2) then
   Grid1.RowCount := Grid1.RowCount - 1;
 //каждая третья строка серая
-if (ARow mod 3 = 0)and(ARow > 0)and(ACol > 2)and(RowSelected <> ARow) then
+if (ARow mod 3 = 0)and(ARow > 0)and(ACol > 2)and(RowSelected1 <> ARow) then
   begin
     ColorBr := Grid1.Canvas.Brush.Color;
     ColorP := Grid1.Canvas.Pen.Color;
@@ -395,20 +394,20 @@ begin
   delete(InputM,1,8);
   for i := 0 to 50 do
     begin
-      Grid.Cells[Unit1.Position[i],RowSelected] := copy(InputM,1,pos(';',InputM)-1);
+      Grid.Cells[Unit1.Position[i],RowSelected1] := copy(InputM,1,pos(';',InputM)-1);
       delete(InputM,1,pos(';',InputM));
     end;
-  Grid.Cells[0,RowSelected] := inttostr(RowSelected);
-  Grid.Cells[0,RowSelected] := inttostr(RowSelected);
+  Grid.Cells[0,RowSelected1] := inttostr(RowSelected1);
+  Grid.Cells[0,RowSelected1] := inttostr(RowSelected1);
   Unit2.ArrayLenth := 30;
-  findInf(listForm.GridC, Grid.Cells[5,RowSelected]);
-  Grid.Cells[6,RowSelected] := a[2];
-  findInf(listForm.GridC, Grid.Cells[14,RowSelected]);
-  Grid.Cells[15,RowSelected] := a[2];
+  findInf(listForm.GridC, Grid.Cells[5,RowSelected1]);
+  Grid.Cells[6,RowSelected1] := a[2];
+  findInf(listForm.GridC, Grid.Cells[14,RowSelected1]);
+  Grid.Cells[15,RowSelected1] := a[2];
   Unit2.ArrayLenth := 15;
-  findInf(listForm.GridD, Grid.Cells[20,RowSelected]);
-  Grid.Cells[21,RowSelected] := a[11];
-  Grid.Cells[22,RowSelected] := a[14];
+  findInf(listForm.GridD, Grid.Cells[20,RowSelected1]);
+  Grid.Cells[21,RowSelected1] := a[11];
+  Grid.Cells[22,RowSelected1] := a[14];
   Unit1.FilterGrid;
 end;
 end;
@@ -464,7 +463,7 @@ while (pos(daycode,Grid.Cells[1,i])=1) and (i > 0) do
   end;
 cardForm.Edit29 .Text := daycode + inttostr(count) + cardForm.edit30.Text;
 
-RowSelected := -1;
+RowSelected1 := -1;
 end;
 
 //нажатие кнопки "контрагенты" в выпадающем меню
@@ -515,7 +514,7 @@ end;
 
 procedure TMainForm.GridSelectCell(Sender: TObject; ACol, ARow: Integer;
   var CanSelect: Boolean);
-begin RowSelected := ARow; end;
+begin RowSelected1 := ARow; end;
 
 //двойной щелчок по таблице
 procedure TMainForm.GridDblClick(Sender: TObject);
@@ -528,7 +527,7 @@ cardForm.Visible := true;
 cardForm.VertScrollBar.Position := 0;
 
 for i := 0 to 50 do
-  CardInf[i+1] := Grid1.Cells[Unit1.Position[i],RowSelected];
+  CardInf[i+1] := Grid1.Cells[Unit1.Position[i],RowSelected1];
 loadCardPage;
 
 {cardForm.Edit7.Text := Grid1.Cells[2,RowSelected];
@@ -743,7 +742,7 @@ begin
   delete(InputM,1,9);
   for i := 0 to 14 do
     begin
-      listForm.GridD.Cells[i+1,RowSelected] := copy(InputM,1,pos(';',InputM)-1);
+      listForm.GridD.Cells[i+1,RowSelected1] := copy(InputM,1,pos(';',InputM)-1);
       delete(InputM,1,pos(';',InputM));
     end;
   loadGrid(listForm.GridD);
@@ -785,7 +784,7 @@ begin
   delete(InputM,1,9);
   for i := 0 to 30 do
     begin
-      listForm.GridC.Cells[i+1,RowSelected] := copy(InputM,1,pos(';',InputM)-1);
+      listForm.GridC.Cells[i+1,RowSelected1] := copy(InputM,1,pos(';',InputM)-1);
       delete(InputM,1,pos(';',InputM));
     end;
   loadGrid(listForm.GridC);
