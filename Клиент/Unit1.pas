@@ -40,6 +40,7 @@ type
     Button2: TButton;
     Button1: TButton;
     Image1: TImage;
+    Client4: TClientSocket;
     procedure FormCreate(Sender: TObject);
     procedure FormResize(Sender: TObject);
     procedure N1Click(Sender: TObject);
@@ -65,6 +66,7 @@ type
       ErrorEvent: TErrorEvent; var ErrorCode: Integer);
     procedure Client1Connect(Sender: TObject; Socket: TCustomWinSocket);
     procedure Button2Click(Sender: TObject);
+    procedure Client4Read(Sender: TObject; Socket: TCustomWinSocket);
   private
     { Private declarations }
   public
@@ -92,7 +94,7 @@ procedure FilterGrid();
 
 implementation
 
-uses Unit2, Unit3, Unit5, Unit4, Unit6, Unit7, Unit8, Unit9;
+uses Unit2, Unit3, Unit5, Unit4, Unit6, Unit7, Unit8, Unit9, Unit10;
 
 {$R *.dfm}
 procedure ColumnWidthAlign(Sender: TObject);
@@ -309,36 +311,11 @@ begin
 InputM := socket.ReceiveText;
 while InputM<>'' do
   begin
-    if copy(InputM,1,6) = '#login' then InputN := 0;
     if copy(InputM,1,6) = '#reisi' then InputN := 1; //получение списка заявок
     if copy(InputM,1,4) = '#new' then InputN := 4; //добавление новой заявки
     if copy(InputM,1,8) = '#rewrite' then InputN := 5; //изменение заявки
 
 case InputN of
-0:
-begin
-  delete(InputM,1,6);
-  if pos('Yes', InputM) = 1 then
-    begin
-      mainForm.Visible := true;
-      loginForm.Visible := false;
-      delete(InputM,1,3);
-      cardForm.Edit30.Text := InputM;
-      listForm.GridD.RowCount := 2;
-      Client2.Socket.SendText('drivers');
-      listForm.GridC.RowCount := 2;
-      Client3.Socket.SendText('counters');
-      Grid.RowCount := 2;
-      Grid1.RowCount := 2;
-      Grid.Rows[1].Clear;
-      Grid1.Rows[1].Clear;
-      Client1.Socket.SendText('reisi'+InputM);
-    end
-  else
-    MessageDlgPos('Неверный логин или пароль.',
-              mtError, [mbOK], 0, -1, -1);
-    InputM := '';
-end;
 1:
 begin
   delete(InputM,1,6);
@@ -498,18 +475,9 @@ end;
 //нажатие кнопки "Служебные" в выпадающем меню
 procedure TMainForm.N15Click(Sender: TObject);
 begin
-if Grid1.Top = 8 then
-  begin
-    Grid1.Height := Grid1.Height - 32;
-    Grid1.Top := 40;
-    MainMenu1.Items.Items[4].Items[1].Caption := 'Служебные скрыть';
-  end
-else
-  begin
-    Grid1.Top := 8;
-    Grid1.Height := Grid1.Height + 32;
-    MainMenu1.Items.Items[4].Items[1].Caption := 'Служебные';
-  end;
+mainForm.Client4.Socket.SendText('#listlogin');
+adminForm.Visible := true;
+mainForm.Enabled := false;
 end;
 
 procedure TMainForm.GridSelectCell(Sender: TObject; ACol, ARow: Integer;
@@ -813,12 +781,12 @@ end;
 procedure TMainForm.Client1Connect(Sender: TObject;
   Socket: TCustomWinSocket);
 begin
-Client2.Active := false;
 Client2.Host := loginForm.edit3.Text;
 Client2.Active := true;
-Client3.Active := false;
 Client3.Host := loginForm.edit3.Text;
 Client3.Active := true;
+Client4.Host := loginForm.edit3.Text;
+Client4.Active := true;
 end;
 
 procedure TMainForm.Button2Click(Sender: TObject);
@@ -842,6 +810,62 @@ HTMLPage.Add('</html>');
 HTMLPage.SaveToFile('page.html');
 HTMLPage.Free;
 //ShellExecute(handle, 'open', 'page.html', nil, nil, SW_SHOWNORMAL);
+end;
+
+procedure TMainForm.Client4Read(Sender: TObject; Socket: TCustomWinSocket);
+var InputM,s: string;
+    InputN,i: integer;
+    t: boolean;
+begin
+InputM := socket.ReceiveText;
+while InputM<>'' do
+  begin
+    if copy(InputM,1,10) = '#listlogin' then InputN := 1;
+    if copy(InputM,1,6) = '#login' then InputN := 2;
+    if copy(InputM,1,11) = '#changepass' then InputN := 3;
+
+case InputN of
+1:
+begin
+delete(InputM,1,10);
+adminForm.ListBox1.Items.Add(copy(InputM,1,pos(';',InputM)-1));
+delete(InputM,1,pos(';',InputM));
+end;
+2:
+begin
+  delete(InputM,1,6);
+  if pos('Yes', InputM) = 1 then
+    begin
+      mainForm.Visible := true;
+      loginForm.Visible := false;
+      delete(InputM,1,3);
+      cardForm.Edit30.Text := InputM;
+      listForm.GridD.RowCount := 2;
+      Client2.Socket.SendText('drivers');
+      listForm.GridC.RowCount := 2;
+      Client3.Socket.SendText('counters');
+      Grid.RowCount := 2;
+      Grid1.RowCount := 2;
+      Grid.Rows[1].Clear;
+      Grid1.Rows[1].Clear;
+      Client1.Socket.SendText('reisi'+InputM);
+    end
+  else
+    MessageDlgPos('Неверный логин или пароль.',
+              mtError, [mbOK], 0, -1, -1);
+    InputM := '';
+end;
+3:
+begin
+delete(InputM,1,11);
+if InputM = 'yes' then
+  adminForm.Panel1.Visible := false
+else
+  MessageDlgPos('Неверный пароль.',
+              mtError, [mbOK], 0, -1, -1);
+end;
+end;
+end;
 end;
 
 end.

@@ -39,8 +39,8 @@ type
     Client3: TClientSocket;
     Button2: TButton;
     Button1: TButton;
-    Memo1: TMemo;
     Image1: TImage;
+    Client4: TClientSocket;
     procedure FormCreate(Sender: TObject);
     procedure FormResize(Sender: TObject);
     procedure N1Click(Sender: TObject);
@@ -66,6 +66,7 @@ type
       ErrorEvent: TErrorEvent; var ErrorCode: Integer);
     procedure Client1Connect(Sender: TObject; Socket: TCustomWinSocket);
     procedure Button2Click(Sender: TObject);
+    procedure Client4Read(Sender: TObject; Socket: TCustomWinSocket);
   private
     { Private declarations }
   public
@@ -81,7 +82,7 @@ var
   DriveInf: array[0..14]of string;
   CounterInf: array[0..35]of string;
   Filter: array[1..35,0..1]of string;
-  FilterCol,RowSelected: integer;
+  FilterCol,RowSelected1, RowSelected2: integer;
   MousePos: integer;
   SenderGrid: TStringGrid;
   SelPosNow: integer;
@@ -93,7 +94,7 @@ procedure FilterGrid();
 
 implementation
 
-uses Unit2, Unit3, Unit5, Unit4, Unit6, Unit7, Unit8, Unit9;
+uses Unit2, Unit3, Unit5, Unit4, Unit6, Unit7, Unit8, Unit9, Unit10;
 
 {$R *.dfm}
 procedure ColumnWidthAlign(Sender: TObject);
@@ -271,7 +272,7 @@ ColumnWidthAlign(Sender);
 if (Grid1.Cells[1,Grid1.RowCount-2] = '')and(Grid1.RowCount > 2) then
   Grid1.RowCount := Grid1.RowCount - 1;
 //кажда€ треть€ строка сера€
-if (ARow mod 3 = 0)and(ARow > 0)and(ACol > 2)and(RowSelected <> ARow) then
+if (ARow mod 3 = 0)and(ARow > 0)and(ACol > 2)and(RowSelected1 <> ARow) then
   begin
     ColorBr := Grid1.Canvas.Brush.Color;
     ColorP := Grid1.Canvas.Pen.Color;
@@ -310,36 +311,11 @@ begin
 InputM := socket.ReceiveText;
 while InputM<>'' do
   begin
-    if copy(InputM,1,6) = '#login' then InputN := 0;
     if copy(InputM,1,6) = '#reisi' then InputN := 1; //получение списка за€вок
     if copy(InputM,1,4) = '#new' then InputN := 4; //добавление новой за€вки
     if copy(InputM,1,8) = '#rewrite' then InputN := 5; //изменение за€вки
 
 case InputN of
-0:
-begin
-  delete(InputM,1,6);
-  if pos('Yes', InputM) = 1 then
-    begin
-      mainForm.Visible := true;
-      loginForm.Visible := false;
-      delete(InputM,1,3);
-      cardForm.Edit30.Text := InputM;
-      listForm.GridD.RowCount := 2;
-      Client2.Socket.SendText('drivers');
-      listForm.GridC.RowCount := 2;
-      Client3.Socket.SendText('counters');
-      Grid.RowCount := 2;
-      Grid1.RowCount := 2;
-      Grid.Rows[1].Clear;
-      Grid1.Rows[1].Clear;
-      Client1.Socket.SendText('reisi'+InputM);
-    end
-  else
-    MessageDlgPos('Ќеверный логин или пароль.',
-              mtError, [mbOK], 0, -1, -1);
-    InputM := '';
-end;
 1:
 begin
   delete(InputM,1,6);
@@ -395,20 +371,20 @@ begin
   delete(InputM,1,8);
   for i := 0 to 50 do
     begin
-      Grid.Cells[Unit1.Position[i],RowSelected] := copy(InputM,1,pos(';',InputM)-1);
+      Grid.Cells[Unit1.Position[i],RowSelected1] := copy(InputM,1,pos(';',InputM)-1);
       delete(InputM,1,pos(';',InputM));
     end;
-  Grid.Cells[0,RowSelected] := inttostr(RowSelected);
-  Grid.Cells[0,RowSelected] := inttostr(RowSelected);
+  Grid.Cells[0,RowSelected1] := inttostr(RowSelected1);
+  Grid.Cells[0,RowSelected1] := inttostr(RowSelected1);
   Unit2.ArrayLenth := 30;
-  findInf(listForm.GridC, Grid.Cells[5,RowSelected]);
-  Grid.Cells[6,RowSelected] := a[2];
-  findInf(listForm.GridC, Grid.Cells[14,RowSelected]);
-  Grid.Cells[15,RowSelected] := a[2];
+  findInf(listForm.GridC, Grid.Cells[5,RowSelected1]);
+  Grid.Cells[6,RowSelected1] := a[2];
+  findInf(listForm.GridC, Grid.Cells[14,RowSelected1]);
+  Grid.Cells[15,RowSelected1] := a[2];
   Unit2.ArrayLenth := 15;
-  findInf(listForm.GridD, Grid.Cells[20,RowSelected]);
-  Grid.Cells[21,RowSelected] := a[11];
-  Grid.Cells[22,RowSelected] := a[14];
+  findInf(listForm.GridD, Grid.Cells[20,RowSelected1]);
+  Grid.Cells[21,RowSelected1] := a[11];
+  Grid.Cells[22,RowSelected1] := a[14];
   Unit1.FilterGrid;
 end;
 end;
@@ -464,7 +440,7 @@ while (pos(daycode,Grid.Cells[1,i])=1) and (i > 0) do
   end;
 cardForm.Edit29 .Text := daycode + inttostr(count) + cardForm.edit30.Text;
 
-RowSelected := -1;
+RowSelected1 := -1;
 end;
 
 //нажатие кнопки "контрагенты" в выпадающем меню
@@ -499,23 +475,14 @@ end;
 //нажатие кнопки "—лужебные" в выпадающем меню
 procedure TMainForm.N15Click(Sender: TObject);
 begin
-if Grid1.Top = 8 then
-  begin
-    Grid1.Height := Grid1.Height - 32;
-    Grid1.Top := 40;
-    MainMenu1.Items.Items[4].Items[1].Caption := '—лужебные скрыть';
-  end
-else
-  begin
-    Grid1.Top := 8;
-    Grid1.Height := Grid1.Height + 32;
-    MainMenu1.Items.Items[4].Items[1].Caption := '—лужебные';
-  end;
+mainForm.Client4.Socket.SendText('#listlogin');
+adminForm.Visible := true;
+mainForm.Enabled := false;
 end;
 
 procedure TMainForm.GridSelectCell(Sender: TObject; ACol, ARow: Integer;
   var CanSelect: Boolean);
-begin RowSelected := ARow; end;
+begin RowSelected1 := ARow; end;
 
 //двойной щелчок по таблице
 procedure TMainForm.GridDblClick(Sender: TObject);
@@ -528,7 +495,7 @@ cardForm.Visible := true;
 cardForm.VertScrollBar.Position := 0;
 
 for i := 0 to 50 do
-  CardInf[i+1] := Grid1.Cells[Unit1.Position[i],RowSelected];
+  CardInf[i+1] := Grid1.Cells[Unit1.Position[i],RowSelected1];
 loadCardPage;
 
 {cardForm.Edit7.Text := Grid1.Cells[2,RowSelected];
@@ -743,7 +710,7 @@ begin
   delete(InputM,1,9);
   for i := 0 to 14 do
     begin
-      listForm.GridD.Cells[i+1,RowSelected] := copy(InputM,1,pos(';',InputM)-1);
+      listForm.GridD.Cells[i+1,RowSelected1] := copy(InputM,1,pos(';',InputM)-1);
       delete(InputM,1,pos(';',InputM));
     end;
   loadGrid(listForm.GridD);
@@ -785,7 +752,7 @@ begin
   delete(InputM,1,9);
   for i := 0 to 30 do
     begin
-      listForm.GridC.Cells[i+1,RowSelected] := copy(InputM,1,pos(';',InputM)-1);
+      listForm.GridC.Cells[i+1,RowSelected1] := copy(InputM,1,pos(';',InputM)-1);
       delete(InputM,1,pos(';',InputM));
     end;
   loadGrid(listForm.GridC);
@@ -814,12 +781,12 @@ end;
 procedure TMainForm.Client1Connect(Sender: TObject;
   Socket: TCustomWinSocket);
 begin
-Client2.Active := false;
 Client2.Host := loginForm.edit3.Text;
 Client2.Active := true;
-Client3.Active := false;
 Client3.Host := loginForm.edit3.Text;
 Client3.Active := true;
+Client4.Host := loginForm.edit3.Text;
+Client4.Active := true;
 end;
 
 procedure TMainForm.Button2Click(Sender: TObject);
@@ -843,6 +810,52 @@ HTMLPage.Add('</html>');
 HTMLPage.SaveToFile('page.html');
 HTMLPage.Free;
 //ShellExecute(handle, 'open', 'page.html', nil, nil, SW_SHOWNORMAL);
+end;
+
+procedure TMainForm.Client4Read(Sender: TObject; Socket: TCustomWinSocket);
+var InputM,s: string;
+    InputN,i: integer;
+    t: boolean;
+begin
+InputM := socket.ReceiveText;
+while InputM<>'' do
+  begin
+    if copy(InputM,1,10) = '#listlogin' then InputN := 1;
+    if copy(InputM,1,6) = '#login' then InputN := 2;
+
+case InputN of
+1:
+begin
+delete(InputM,1,10);
+adminForm.ListBox1.Items.Add(copy(InputM,1,pos(';',InputM)-1));
+delete(InputM,1,pos(';',InputM));
+end;
+2:
+begin
+  delete(InputM,1,6);
+  if pos('Yes', InputM) = 1 then
+    begin
+      mainForm.Visible := true;
+      loginForm.Visible := false;
+      delete(InputM,1,3);
+      cardForm.Edit30.Text := InputM;
+      listForm.GridD.RowCount := 2;
+      Client2.Socket.SendText('drivers');
+      listForm.GridC.RowCount := 2;
+      Client3.Socket.SendText('counters');
+      Grid.RowCount := 2;
+      Grid1.RowCount := 2;
+      Grid.Rows[1].Clear;
+      Grid1.Rows[1].Clear;
+      Client1.Socket.SendText('reisi'+InputM);
+    end
+  else
+    MessageDlgPos('Ќеверный логин или пароль.',
+              mtError, [mbOK], 0, -1, -1);
+    InputM := '';
+end;
+end;
+end;
 end;
 
 end.

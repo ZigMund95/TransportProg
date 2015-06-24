@@ -10,7 +10,7 @@ uses
   Unit6 in 'Unit6.pas' {counterAddForm},
   Unit7 in 'Unit7.pas' {filterForm},
   Unit8 in 'Unit8.pas' {listForm},
-  Unit9 in '..\..\..\2\Клиент\Unit9.pas' {loginForm};
+  Unit9 in 'Unit9.pas' {loginForm};
 
 {$R *.res}
 

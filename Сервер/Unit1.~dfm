@@ -49,7 +49,7 @@ object Form1: TForm1
   end
   object RadioButton1: TRadioButton
     Left = 504
-    Top = 152
+    Top = 168
     Width = 113
     Height = 17
     Caption = 'RadioButton1'
@@ -60,7 +60,7 @@ object Form1: TForm1
   end
   object RadioButton2: TRadioButton
     Left = 608
-    Top = 152
+    Top = 168
     Width = 113
     Height = 17
     Caption = 'RadioButton2'
@@ -69,7 +69,7 @@ object Form1: TForm1
   end
   object RadioButton3: TRadioButton
     Left = 504
-    Top = 176
+    Top = 192
     Width = 113
     Height = 17
     Caption = 'RadioButton3'
@@ -78,7 +78,7 @@ object Form1: TForm1
   end
   object RadioButton4: TRadioButton
     Left = 608
-    Top = 176
+    Top = 192
     Width = 113
     Height = 17
     Caption = 'RadioButton4'
@@ -162,5 +162,13 @@ object Form1: TForm1
     OnClientRead = Server3ClientRead
     Left = 496
     Top = 104
+  end
+  object Server4: TServerSocket
+    Active = False
+    Port = 11248
+    ServerType = stNonBlocking
+    OnClientRead = Server4ClientRead
+    Left = 496
+    Top = 136
   end
 end
