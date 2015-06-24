@@ -1,6 +1,6 @@
 object MainForm: TMainForm
-  Left = 368
-  Top = 250
+  Left = 355
+  Top = 189
   Width = 913
   Height = 478
   Caption = 'MainForm'
@@ -182,5 +182,13 @@ object MainForm: TMainForm
     OnRead = Client3Read
     Left = 736
     Top = 128
+  end
+  object Client4: TClientSocket
+    Active = False
+    ClientType = ctNonBlocking
+    Port = 11248
+    OnRead = Client4Read
+    Left = 736
+    Top = 160
   end
 end

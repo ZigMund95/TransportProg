@@ -10,7 +10,8 @@ uses
   Unit6 in 'Unit6.pas' {counterAddForm},
   Unit7 in 'Unit7.pas' {filterForm},
   Unit8 in 'Unit8.pas' {listForm},
-  Unit9 in 'Unit9.pas' {loginForm};
+  Unit9 in 'Unit9.pas' {loginForm},
+  Unit10 in '..\..\..\Новая папка (2)\Unit10.pas' {adminForm};
 
 {$R *.res}
 
@@ -25,5 +26,6 @@ begin
   Application.CreateForm(TcounterAddForm, counterAddForm);
   Application.CreateForm(TfilterForm, filterForm);
   Application.CreateForm(TlistForm, listForm);
+  Application.CreateForm(TadminForm, adminForm);
   Application.Run;
 end.

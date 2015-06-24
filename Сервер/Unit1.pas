@@ -28,6 +28,7 @@ type
     Button2: TButton;
     Edit2: TEdit;
     Edit3: TEdit;
+    Server4: TServerSocket;
     procedure Server1ClientRead(Sender: TObject;
       Socket: TCustomWinSocket);
     procedure FormCreate(Sender: TObject);
@@ -40,6 +41,7 @@ type
     procedure Server3ClientRead(Sender: TObject; Socket: TCustomWinSocket);
     procedure RadioButton4Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
+    procedure Server4ClientRead(Sender: TObject; Socket: TCustomWinSocket);
   private
     { Private declarations }
   public
@@ -60,6 +62,7 @@ begin
 Server1.Active := true;
 Server2.Active := true;
 Server3.Active := true;
+Server4.Active := true;
 table1.DatabaseName := 'resources\';
 table1.TableName := 'base.db';
 table1.Active := true;
@@ -86,6 +89,7 @@ table4.Active := false;
 server1.Active := false;
 server2.Active := false;
 server3.Active := false;
+server4.Active := false;
 end;
 
 procedure TForm1.Server1ClientRead(Sender: TObject;
@@ -94,26 +98,11 @@ var InputM, OutputM,s: string;
     InputN,i: integer;
 begin
 InputM := Socket.ReceiveText;
-if copy(InputM,1,6) = '#login' then InputN := 0;
 if pos('reisi',InputM) = 1 then InputN := 1;
 if copy(InputM,1,4) = '#new' then InputN := 4;
 if copy(InputM,1,8) = '#rewrite' then InputN := 7;
 edit1.Text := inttostr(InputN);
 case InputN of
-0:
-begin
-  delete(InputM,1,6);
-  s := copy(InputM,1,pos(';',InputM)-1);
-  delete(InputM,1,pos(';',InputM));
-  table4.First;
-  while (s <> table4.Fields[1].AsString)and(not table4.Eof) do
-    table4.Next;
-  s := MD5DigestToStr(MD5String(MD5DigestToStr(MD5String(InputM)) + table4.Fields[3].AsString));
-  if table4.Fields[2].AsString = s then
-    Socket.SendText('#loginYes'+table4.Fields[0].AsString)
-  else
-   Socket.SendText('#loginNo');
-end;
 1:
 begin
   delete(InputM,1,5);
@@ -408,5 +397,41 @@ table4.Fields[2].AsString := s;
 table4.Post;
 end;
 
+
+procedure TForm1.Server4ClientRead(Sender: TObject;
+  Socket: TCustomWinSocket);
+var InputM, OutputM,s: string;
+    InputN,i: integer;
+begin
+InputM := Socket.ReceiveText;
+if copy(InputM,1,10) = '#listlogin' then InputN := 1;
+if copy(InputM,1,6) = '#login' then InputN := 2;
+edit1.Text := inttostr(InputN);
+case InputN of
+1:
+begin
+  table4.First;
+  while not table4.Eof do
+    begin
+      Socket.SendText('#listlogin' + table4.Fields[1].AsString + ';');
+      table4.Next;
+    end;
+end;
+2:
+begin
+  delete(InputM,1,6);
+  s := copy(InputM,1,pos(';',InputM)-1);
+  delete(InputM,1,pos(';',InputM));
+  table4.First;
+  while (s <> table4.Fields[1].AsString)and(not table4.Eof) do
+    table4.Next;
+  s := MD5DigestToStr(MD5String(MD5DigestToStr(MD5String(InputM)) + table4.Fields[3].AsString));
+  if table4.Fields[2].AsString = s then
+    Socket.SendText('#loginYes'+table4.Fields[0].AsString)
+  else
+   Socket.SendText('#loginNo');
+end;
+end;
+end;
 
 end.
