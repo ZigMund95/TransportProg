@@ -166,7 +166,7 @@ var i: integer;
     s: string;
 begin
 refreshPage;
-if RowSelected = -1 then
+if RowSelected2 = -1 then
   s := '#dnew'
 else
   s := '#drewrite';
@@ -176,7 +176,7 @@ for i := 0 to 14 do
 
 listForm.Enabled := true;
 mainForm.Client2.Socket.SendText(s);
-if RowSelected = -1 then
+if RowSelected2 = -1 then
   begin
     listForm.GridD.RowCount := 2;
     mainForm.Client2.Socket.SendText('drivers');
@@ -385,7 +385,7 @@ var i: integer;
     s: string;
 begin
 refreshPage;
-if RowSelected = -1 then
+if RowSelected2 = -1 then
   s := '#dnew'
 else
   s := '#drewrite';

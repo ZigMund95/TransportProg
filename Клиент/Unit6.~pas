@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls;
+  Dialogs, StdCtrls, ExtCtrls;
 
 type
   TcounterAddForm = class(TForm)
@@ -74,6 +74,7 @@ type
     Label27: TLabel;
     Edit33: TEdit;
     Edit34: TEdit;
+    Image1: TImage;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure EditChange(Sender: TObject);
@@ -143,6 +144,12 @@ end;
 
 procedure TcounterAddForm.FormCreate(Sender: TObject);
 begin
+image1.Picture.LoadFromFile('bg_1.png');
+image1.Left := 0;
+image1.Top := 0;
+image1.Width := counterAddForm.ClientWidth;
+image1.Height := counterAddForm.ClientHeight;
+
 Label1.Caption := 'Заказчик'; Label2.Caption := 'код в АТИ'; Label3.Caption := 'ИНН';
 Label4.Caption := 'КПП'; Label5.Caption := 'ОГРН'; Label6.Caption := 'р/счет';
 Label7.Caption := 'банк'; Label8.Caption := 'БИК'; Label9.Caption := 'корр.счет';
@@ -200,7 +207,7 @@ procedure TcounterAddForm.Button1Click(Sender: TObject);
 var OutputM: string;
     i: integer;
 begin
-if RowSelected = -1 then
+if RowSelected2 = -1 then
   OutputM := '#cnew'
 else
   OutputM := '#crewrite';
@@ -210,7 +217,7 @@ for i := 0 to 30 do
 
 listForm.Enabled := true;
 mainForm.Client3.Socket.SendText(OutputM);
-if RowSelected = -1 then
+if RowSelected2 = -1 then
   begin
     listForm.GridC.RowCount := 2;
     mainForm.Client3.Socket.SendText('counters');
@@ -222,7 +229,7 @@ procedure TcounterAddForm.Edit34Click(Sender: TObject);
 var i: integer;
     OutputM: string;
 begin
-if RowSelected = -1 then
+if RowSelected2 = -1 then
   OutputM := '#cnew'
 else
   OutputM := '#crewrite';

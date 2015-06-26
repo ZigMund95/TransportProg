@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, Unit1;
+  Dialogs, StdCtrls, Unit1, ExtCtrls;
 
 type
   TviewForm = class(TForm)
@@ -36,6 +36,7 @@ type
     CheckBox27: TCheckBox;
     CheckBox28: TCheckBox;
     CheckBox29: TCheckBox;
+    Image1: TImage;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure CheckBox3Click(Sender: TObject);
@@ -82,6 +83,12 @@ implementation
 procedure TviewForm.FormCreate(Sender: TObject);
 var i: integer;
 begin
+image1.Picture.LoadFromFile('bg_1.png');
+image1.Left := 0;
+image1.Top := 0;
+image1.Width := viewForm.ClientWidth;
+image1.Height := viewForm.ClientHeight;
+
 viewForm.Left := (screen.Width - viewForm.Width) div 2;
 viewForm.Top := (screen.Height - viewForm.Height)div 2;
 
@@ -102,7 +109,7 @@ end;
 procedure TviewForm.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
 mainForm.Enabled := true;
-mainForm.Grid.SetFocus;
+mainForm.Grid1.SetFocus;
 end;
 
 procedure TviewForm.CheckBox3Click(Sender: TObject);
@@ -163,7 +170,7 @@ begin Unit1.FieldVision[29] := CheckBox29.Checked; end;
 procedure TviewForm.Button1Click(Sender: TObject);
 var i: integer;
 begin
-ColumnWidthAlign(Grid1);
+ColumnWidthAlign(mainForm.Grid1);
 viewForm.Close;
 end;
 

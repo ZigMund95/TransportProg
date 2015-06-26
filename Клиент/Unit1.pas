@@ -38,7 +38,6 @@ type
     Client2: TClientSocket;
     Client3: TClientSocket;
     Button2: TButton;
-    Button1: TButton;
     Image1: TImage;
     Client4: TClientSocket;
     procedure FormCreate(Sender: TObject);
@@ -86,6 +85,7 @@ var
   MousePos: integer;
   SenderGrid: TStringGrid;
   SelPosNow: integer;
+  formX,formY,mouseX,mouseY: integer;
 
 procedure ColumnWidthAlign(Sender: TObject);
 procedure GridRefresh(Sender: TStringGrid);
@@ -97,6 +97,7 @@ implementation
 uses Unit2, Unit3, Unit5, Unit4, Unit6, Unit7, Unit8, Unit9, Unit10;
 
 {$R *.dfm}
+
 procedure ColumnWidthAlign(Sender: TObject);
 var
   RowNum       : Integer;
@@ -221,6 +222,8 @@ procedure TMainForm.FormCreate(Sender: TObject);
 var i:integer;
     s: string;
 begin
+mouseX := -1;
+mouseY := -1;
 image1.Picture.LoadFromFile('bg_1.png');
 image1.Left := 0;
 image1.Top := 0;
@@ -257,6 +260,9 @@ end;
 //Подстраивание размеров таблицы под размер окна
 procedure TMainForm.FormResize(Sender: TObject);
 begin
+image1.Width := mainForm.ClientWidth;
+image1.Height := mainForm.ClientHeight;
+
 Grid1.Height := MainForm.ClientHeight - 16;
 Grid1.Width := MainForm.ClientWidth - 16;
 end;
@@ -848,6 +854,10 @@ begin
       Grid1.RowCount := 2;
       Grid.Rows[1].Clear;
       Grid1.Rows[1].Clear;
+      if InputM = '0' then
+        mainMenu1.Items.Items[4].Items[1].Visible := true
+      else
+        mainMenu1.Items.Items[4].Items[1].Visible := false;
       Client1.Socket.SendText('reisi'+InputM);
     end
   else
@@ -863,6 +873,7 @@ if InputM = 'yes' then
 else
   MessageDlgPos('Неверный пароль.',
               mtError, [mbOK], 0, -1, -1);
+InputM := '';
 end;
 end;
 end;

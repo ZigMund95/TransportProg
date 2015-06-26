@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls;
+  Dialogs, StdCtrls, ExtCtrls;
 
 type
   TcounterAddForm = class(TForm)
@@ -74,6 +74,7 @@ type
     Label27: TLabel;
     Edit33: TEdit;
     Edit34: TEdit;
+    Image1: TImage;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure EditChange(Sender: TObject);
@@ -84,6 +85,7 @@ type
     procedure EditNameKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure EditNumKeyPress(Sender: TObject; var Key: Char);
+    procedure FormResize(Sender: TObject);
   private
     { Private declarations }
   public
@@ -143,6 +145,12 @@ end;
 
 procedure TcounterAddForm.FormCreate(Sender: TObject);
 begin
+image1.Picture.LoadFromFile('bg_1.png');
+image1.Left := 0;
+image1.Top := 0;
+image1.Width := counterAddForm.ClientWidth;
+image1.Height := counterAddForm.ClientHeight;
+
 Label1.Caption := 'Çàêàç÷èê'; Label2.Caption := 'êîä â ÀÒÈ'; Label3.Caption := 'ÈÍÍ';
 Label4.Caption := 'ÊÏÏ'; Label5.Caption := 'ÎÃĞÍ'; Label6.Caption := 'ğ/ñ÷åò';
 Label7.Caption := 'áàíê'; Label8.Caption := 'ÁÈÊ'; Label9.Caption := 'êîğğ.ñ÷åò';
@@ -242,6 +250,12 @@ procedure TcounterAddForm.EditNumKeyPress(Sender: TObject; var Key: Char);
 begin
 if not(((key >= '0')and(key <= '9'))or(key =#8)) then
   key := #0;
+end;
+
+procedure TcounterAddForm.FormResize(Sender: TObject);
+begin
+image1.Width := counterAddForm.ClientWidth;
+image1.Height := counterAddForm.ClientHeight;
 end;
 
 end.

@@ -66,7 +66,7 @@ end;
 procedure TloginForm.Button1Click(Sender: TObject);
 var Login: TStrings;
 begin
-mainForm.Client1.Socket.SendText('#login'+edit1.Text+';'+edit2.Text);
+mainForm.Client4.Socket.SendText('#login'+edit1.Text+';'+edit2.Text);
 
 Login := TStringList.Create;
 Login.Add(edit1.Text);

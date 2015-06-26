@@ -204,6 +204,13 @@ object counterAddForm: TcounterAddForm
     Height = 13
     Caption = 'Label1'
   end
+  object Image1: TImage
+    Left = 296
+    Top = 104
+    Width = 161
+    Height = 137
+    Stretch = True
+  end
   object Button1: TButton
     Left = 392
     Top = 344
