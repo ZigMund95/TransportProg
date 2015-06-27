@@ -142,6 +142,8 @@ type
     procedure BlockKey(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure BlockPress(Sender: TObject; var Key: Char);
     procedure MemoChange(Sender: TObject);
+    procedure FormResize(Sender: TObject);
+    procedure FormPaint(Sender: TObject);
   private
     { Private declarations }
   public
@@ -294,11 +296,11 @@ end;
 procedure TcardForm.FormCreate(Sender: TObject);
 var i: integer;
 begin
-image1.Picture.LoadFromFile('bg_1.png');
+{image1.Picture.LoadFromFile('bg_1.png');
 image1.Left := 0;
 image1.Top := 0;
 image1.Width := cardForm.ClientWidth;
-image1.Height := cardForm.ClientHeight;
+image1.Height := cardForm.ClientHeight;}
 
 for i := 1 to 51 do Unit2.EnabledField[i] := true;
 Unit2.EnabledField[2] := false;
@@ -715,5 +717,21 @@ with Sender as TMemo do
     Unit1.CardInf[Tag] := s;
   end;
 end;
+
+procedure TcardForm.FormResize(Sender: TObject);
+begin
+image1.Width := cardForm.ClientWidth;
+image1.Height := cardForm.ClientHeight;
+end;
+
+procedure TcardForm.FormPaint(Sender: TObject);
+var
+ bm:TBitMap;
+begin
+ bm:=TBitMap.Create;
+ bm.Loadfromfile('bg_1.bmp');
+ cardForm.Canvas.Draw(0,0,bm);
+end;
+
 
 end.

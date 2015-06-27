@@ -356,42 +356,7 @@ procedure TForm1.Button2Click(Sender: TObject);
 var i: integer;
     s: string;
 begin
-{table4.Edit;
-table4.Fields[1].AsString := 'manager1';
-table4.Post; }
-//table4.InsertRecord([0,'admin','933599','']);
-//table4.Fields[3]
-//edit3.Text := MD5DigestToStr(MD5String(edit2.Text));
-
-{memo1.Clear;
-for i := 33 to 126 do
-  memo1.Lines.Add(inttostr(i)+' '+chr(i));}
-//Randomize;
-{table4.First;
-while not table4.Eof do
-  begin
-    table4.Edit;
-    //s := '';
-    //for i := 1 to 5 do
-    //  s := s + chr(RandomRange(33,126));
-    //table4.Fields[3].AsString := s;
-    s := MD5DigestToStr(MD5String(edit2.Text));
-    s := s + table4.Fields[3].AsString;
-    s := MD5DigestToStr(MD5String(s));
-    table4.Fields[2].AsString := s;
-    table4.Post;
-    table4.Next;
-  end; }
-//table4.Delete;
-table4.InsertRecord([]);
 table4.Edit;
-table4.Fields[0].AsInteger := table4.RecordCount - 1;
-table4.Fields[1].AsString := edit2.Text;
-Randomize;
-s := '';
-for i := 1 to 5 do
-  s := s + chr(RandomRange(33,126));
-table4.Fields[3].AsString := s;
 s := MD5DigestToStr(MD5String(MD5DigestToStr(MD5String(edit3.Text)) + table4.Fields[3].AsString));
 table4.Fields[2].AsString := s;
 table4.Post;
@@ -404,8 +369,11 @@ var InputM, OutputM,s: string;
     InputN,i: integer;
 begin
 InputM := Socket.ReceiveText;
+
 if copy(InputM,1,10) = '#listlogin' then InputN := 1;
 if copy(InputM,1,6) = '#login' then InputN := 2;
+if copy(InputM,1,11) = '#changepass' then InputN := 3;
+
 edit1.Text := inttostr(InputN);
 case InputN of
 1:
@@ -430,6 +398,27 @@ begin
     Socket.SendText('#loginYes'+table4.Fields[0].AsString)
   else
    Socket.SendText('#loginNo');
+end;
+3:
+begin
+  delete(InputM,1,11);
+  memo1.Lines.Add(InputM);
+  table4.First;
+  while copy(InputM,1,pos(';',InputM)-1) <> table4.Fields[1].AsString do
+    table4.Next;
+  delete(InputM,1,pos(';',InputM));
+  s := MD5DigestToStr(MD5String(MD5DigestToStr(MD5String(copy(InputM,1,pos(';',InputM)-1))) + table4.Fields[3].AsString));
+  delete(InputM,1,pos(';',InputM));
+  if s = table4.Fields[2].AsString then
+    begin
+      s := MD5DigestToStr(MD5String(MD5DigestToStr(MD5String(InputM)) + table4.Fields[3].AsString));
+      table4.Edit;
+      table4.Fields[2].AsString := s;
+      table4.Post;
+      Socket.SendText('#changepassyes');
+    end
+  else
+    Socket.SendText('#changepassno');
 end;
 end;
 end;

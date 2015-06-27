@@ -1,6 +1,6 @@
 object listForm: TlistForm
-  Left = 383
-  Top = 214
+  Left = 259
+  Top = 168
   Width = 925
   Height = 497
   Caption = 'listForm'
@@ -17,6 +17,13 @@ object listForm: TlistForm
   OnResize = FormResize
   PixelsPerInch = 96
   TextHeight = 13
+  object Image1: TImage
+    Left = 552
+    Top = 120
+    Width = 105
+    Height = 105
+    Stretch = True
+  end
   object GridD: TStringGrid
     Left = 24
     Top = 328

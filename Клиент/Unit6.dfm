@@ -1,5 +1,5 @@
 object counterAddForm: TcounterAddForm
-  Left = 483
+  Left = 338
   Top = 157
   Width = 928
   Height = 480
@@ -13,8 +13,16 @@ object counterAddForm: TcounterAddForm
   OldCreateOrder = False
   OnClose = FormClose
   OnCreate = FormCreate
+  OnResize = FormResize
   PixelsPerInch = 96
   TextHeight = 13
+  object Image1: TImage
+    Left = 296
+    Top = 104
+    Width = 161
+    Height = 137
+    Stretch = True
+  end
   object Label1: TLabel
     Left = 88
     Top = 32

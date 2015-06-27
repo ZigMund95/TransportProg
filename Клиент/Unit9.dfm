@@ -16,6 +16,13 @@ object loginForm: TloginForm
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
+  object Image1: TImage
+    Left = 40
+    Top = 32
+    Width = 105
+    Height = 105
+    Stretch = True
+  end
   object Edit1: TEdit
     Left = 8
     Top = 8

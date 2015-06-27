@@ -13,8 +13,16 @@ object viewForm: TviewForm
   OldCreateOrder = False
   OnClose = FormClose
   OnCreate = FormCreate
+  OnResize = FormResize
   PixelsPerInch = 96
   TextHeight = 13
+  object Image1: TImage
+    Left = 288
+    Top = 184
+    Width = 105
+    Height = 105
+    Stretch = True
+  end
   object CheckBox3: TCheckBox
     Left = 16
     Top = 8

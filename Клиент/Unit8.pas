@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, Grids, StdCtrls, Menus;
+  Dialogs, Grids, StdCtrls, Menus, ExtCtrls;
 
 type
   TlistForm = class(TForm)
@@ -15,6 +15,7 @@ type
     MainMenu1: TMainMenu;
     N1: TMenuItem;
     Button1: TButton;
+    Image1: TImage;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure GridDrawCell(Sender: TObject; ACol, ARow: Integer;
@@ -86,6 +87,12 @@ end;
 
 procedure TlistForm.FormCreate(Sender: TObject);
 begin
+image1.Picture.LoadFromFile('bg_1.png');
+image1.Left := 0;
+image1.Top := 0;
+image1.Width := listForm.ClientWidth;
+image1.Height := listForm.ClientHeight;
+
 GridD.ColCount := 16;
 GridD.RowCount := 2;
 GridC.ColCount := 33;
@@ -126,6 +133,9 @@ end;
 
 procedure TlistForm.FormResize(Sender: TObject);
 begin
+image1.Width := listForm.ClientWidth;
+image1.Height := listForm.ClientHeight;
+
 Grid.Height := listForm.ClientHeight - 40;
 Grid.Width := listForm.ClientWidth - 16;
 end;

@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, ComCtrls;
+  Dialogs, StdCtrls, ComCtrls, ExtCtrls;
 
 type
   TdriversAddForm = class(TForm)
@@ -45,6 +45,7 @@ type
     Edit14: TEdit;
     Edit15: TEdit;
     Button2: TButton;
+    Image1: TImage;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure Button1Click(Sender: TObject);
@@ -135,6 +136,12 @@ end;
 
 procedure TdriversAddForm.FormCreate(Sender: TObject);
 begin
+image1.Picture.LoadFromFile('bg_1.png');
+image1.Left := 0;
+image1.Top := 0;
+image1.Width := driversAddForm.ClientWidth;
+image1.Height := driversAddForm.ClientHeight;
+
 Label1.Caption := 'Фамилия'; Label2.Caption := 'Имя'; Label3.Caption := 'Отчество';
 Label4.Caption := 'Телефон 1'; Label5.Caption := 'Телефон 2'; Label6.Caption := 'Паспорт серия/№'; Label8.Caption := 'Выдан'; Label9.Caption := 'Дата выдачи';
 Label10.Caption := 'Дом. адрес'; Label11.Caption := '№ вод. удост.'; Label12.Caption := 'Тягач';

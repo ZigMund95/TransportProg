@@ -1,6 +1,6 @@
 object filterForm: TfilterForm
-  Left = 835
-  Top = 238
+  Left = 308
+  Top = 154
   Width = 496
   Height = 351
   Caption = 'filterForm'
@@ -13,8 +13,16 @@ object filterForm: TfilterForm
   OldCreateOrder = False
   OnActivate = FormActivate
   OnClose = FormClose
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
+  object Image1: TImage
+    Left = 167
+    Top = 88
+    Width = 161
+    Height = 137
+    Stretch = True
+  end
   object ListBox1: TListBox
     Left = 8
     Top = 8

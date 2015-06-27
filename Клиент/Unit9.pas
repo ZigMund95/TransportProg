@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, Menus, ScktComp, VistaAltFixUnit, XPMan;
+  Dialogs, StdCtrls, Menus, ScktComp, VistaAltFixUnit, XPMan, ExtCtrls;
 
 type
   TloginForm = class(TForm)
@@ -19,6 +19,7 @@ type
     N2: TMenuItem;
     XPManifest1: TXPManifest;
     VistaAltFix1: TVistaAltFix;
+    Image1: TImage;
     procedure FormCreate(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
@@ -43,6 +44,11 @@ uses Unit1;
 procedure TloginForm.FormCreate(Sender: TObject);
 var IP, Login: TStrings;
 begin
+image1.Picture.LoadFromFile('bg_1.png');
+image1.Left := 0;
+image1.Top := 0;
+image1.Width := loginForm.ClientWidth;
+image1.Height := loginForm.ClientHeight;
 
 IP := TStringList.Create;
 IP.LoadFromFile('ip.inf');

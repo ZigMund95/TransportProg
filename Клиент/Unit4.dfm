@@ -1,6 +1,6 @@
 object driversAddForm: TdriversAddForm
-  Left = 747
-  Top = 150
+  Left = 386
+  Top = 151
   Width = 576
   Height = 562
   Caption = 'driversAddForm'
@@ -223,6 +223,13 @@ object driversAddForm: TdriversAddForm
     Font.Name = 'MS Sans Serif'
     Font.Style = []
     ParentFont = False
+  end
+  object Image1: TImage
+    Left = 344
+    Top = 272
+    Width = 161
+    Height = 137
+    Stretch = True
   end
   object Edit1: TEdit
     Tag = 1

@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls;
+  Dialogs, StdCtrls, ExtCtrls;
 
 type
   TfilterForm = class(TForm)
@@ -13,11 +13,13 @@ type
     Button2: TButton;
     Button3: TButton;
     ListBox2: TListBox;
+    Image1: TImage;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure Button3Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -97,6 +99,15 @@ else
 
 Unit1.FilterGrid;
 filterForm.Close;
+end;
+
+procedure TfilterForm.FormCreate(Sender: TObject);
+begin
+image1.Picture.LoadFromFile('bg_1.png');
+image1.Left := 0;
+image1.Top := 0;
+image1.Width := filterForm.ClientWidth;
+image1.Height := filterForm.ClientHeight;
 end;
 
 end.
